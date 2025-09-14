@@ -11,10 +11,19 @@ const HomePage: React.FC = () => {
     <div className="bg-black text-white">
       <Navbar />
       <Hero />
-      <Services />
-      <Projects />
-      <AboutIntro />
-      <Contact />
+      {/* Sections with IDs */}
+      <div id="services">
+        <Services />
+      </div>
+      <div id="projects">
+        <Projects />
+      </div>
+      <div id="about">
+        <AboutIntro />
+      </div>
+      <div id="contact">
+        <Contact />
+      </div>
       <Footer />
     </div>
   );
