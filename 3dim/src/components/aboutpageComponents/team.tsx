@@ -12,7 +12,7 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
   {
     name: "Ahmed Waqar Rao",
-    role: "CEO & Co-Founder | Computer Engineer",
+    role: "Co-Founder & CEO | Computer Engineer",
     image: "/Images/Ahmed.jpg", // ✅ fixed path
     isFounder: true,
     bio: `Passionate about Deep Learning, Machine Learning, and Computer Vision, focusing on UAV optimization for edge environments.
@@ -39,13 +39,13 @@ As Co-Founder of 3Dim Engineering Solutions, he leads innovation in mechanical a
   {
     name: "Muhammad Yousuf Elsa / Eisa",
     role: "Robotics and AI Engineer",
-    image: "/Images/Yousuf.jpg",
-    bio: `Robotics and AI engineer with expertise in intelligent automation and advanced robotic systems.`,
+    image: "/Images/yousuf.jpg",
+    bio: `Expert in developing AI-driven robotic systems using Digital Twins, computer vision, and neural networks. Focused on bridging theoretical research and industrial application to create intelligent automation solutions that enhance operational efficiency and provide a measurable competitive advantage.`,
   },
   {
     name: "Muhammad Raza",
     role: "Civil Engineer",
-    image: "/Images/Raza.jpg",
+    image: "/Images/raza.jpg",
     bio: `Civil engineer specializing in structural design and analysis with strong project execution experience.`,
   },
 ];
