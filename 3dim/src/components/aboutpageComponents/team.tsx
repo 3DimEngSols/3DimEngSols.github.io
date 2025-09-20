@@ -20,13 +20,13 @@ Ahmed develops lightweight high-performance deep learning models (YOLOv8–YOLOv
 with applications in agriculture, disaster response, and industrial automation. Expert in developing AI-driven robotic systems using Digital Twins, computer vision, and neural networks.
 
 He is the Co-Founder and CEO of 3Dim Engineering Solutions & WebsDady, with extensive project management experience 
-at Simplicity Nigeria and DataVision. Ahmed has also been part of cutting-edge academic research at Northwestern 
+at Simplicity Nigeria. Ahmed has also been part of cutting-edge academic research at Northwestern 
 Polytechnical University, where he explored AI-driven solutions for UAVs and real-time image processing.`,
   },
   {
     name: "Qasim Bin Habib",
     role: "Co-Founder | Mechanical Engineer",
-    image: "/Images/Qasim.jpg",
+    image: "/Images/qasim.jpg",
     isFounder: true,
     bio: `A qualified and passionate mechanical engineer with a strong focus on development, learning, and problem-solving.
 He has academic and professional experience in automotive design engineering, CAD/CAM, topology optimization, and
@@ -55,7 +55,7 @@ material science, and design optimization.`,
   {
     name: "Huzaifa",
     role: "Mechanical Engineer | CAD & Multiphysics Simulation Engineer",
-    image: "/Images/huzaifa1.jpeg",
+    image: "/Images/Huzaifa1.jpeg",
     bio: `Mechanical engineer with expertise in 3D modeling using SolidWorks, Creo, and AutoCAD, combined with research experience in 
 fluid mechanics and multiphase flow systems. Huzaifa applies machine learning to complex engineering problems such as two-phase flow 
 analysis in piping systems. His focus is on delivering innovative mechanical solutions by integrating advanced modeling techniques 
