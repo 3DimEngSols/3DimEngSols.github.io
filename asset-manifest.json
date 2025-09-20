@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/3DimEngSols.github.io/static/css/main.f3191fce.css",
+    "main.js": "/3DimEngSols.github.io/static/js/main.b55b4980.js",
+    "index.html": "/3DimEngSols.github.io/index.html",
+    "main.f3191fce.css.map": "/3DimEngSols.github.io/static/css/main.f3191fce.css.map",
+    "main.b55b4980.js.map": "/3DimEngSols.github.io/static/js/main.b55b4980.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f3191fce.css",
+    "static/js/main.b55b4980.js"
+  ]
+}
