@@ -38,6 +38,9 @@ const Navbar: React.FC = () => {
         <button onClick={() => handleNavClick("projects")} className="hover:text-green-400">
           Projects
         </button>
+        <Link to="/tools" className="hover:text-green-400">
+          Buy tools
+        </Link>
         <Link to="/about" className="hover:text-green-400">
           About
         </Link>

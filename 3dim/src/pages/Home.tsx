@@ -5,6 +5,7 @@ import Projects from "../components/projects.tsx";
 import AboutIntro from "../components/about.tsx";
 import Contact from "../components/contact.tsx";
 import Footer from "../components/footer.tsx";
+import Posts from "../components/posts.tsx";
 
 const HomePage: React.FC = () => {
   return (
@@ -20,6 +21,9 @@ const HomePage: React.FC = () => {
       </div>
       <div id="about">
         <AboutIntro />
+      </div>
+      <div id="posts">
+        <Posts /> {/* ✅ new section */}
       </div>
       <div id="contact">
         <Contact />

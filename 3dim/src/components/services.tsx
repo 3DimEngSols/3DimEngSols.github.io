@@ -1,6 +1,18 @@
 // src/components/homepageComponents/Services.tsx
 import React from "react";
-import { Cpu, BookOpen, Wrench, Building2, Brain, Database } from "lucide-react";
+import {
+  Cpu,
+  BookOpen,
+  Wrench,
+  Building2,
+  Brain,
+  Database,
+  FlaskConical,
+  Atom,
+  Terminal,
+  Sigma,
+  Globe
+} from "lucide-react";
 
 interface Service {
   title: string;
@@ -45,7 +57,38 @@ const services: Service[] = [
       "Engineering solutions in structural design, thermodynamics, FEA, optimization, product development, and prototyping.",
     icon: <Wrench className="w-10 h-10 text-emerald-400" />,
   },
+  {
+    title: "Chemistry & Materials Science",
+    description:
+      "Research and publication support in chemistry, polymer chemistry, environmental chemistry, and advanced sustainable materials.",
+    icon: <FlaskConical className="w-10 h-10 text-emerald-400" />,
+  },
+  {
+    title: "Composites & Advanced Materials",
+    description:
+      "Smart/nano composites, solid mechanics, additive manufacturing, and computational material modeling expertise.",
+    icon: <Atom className="w-10 h-10 text-emerald-400" />,
+  },
+  {
+    title: "MATLAB & Simulink",
+    description:
+      "Modeling, simulation, signal processing, control systems, and optimization using MATLAB and Simulink.",
+    icon: <Sigma className="w-10 h-10 text-emerald-400" />,
+  },
+  {
+    title: "Programming & Software Development",
+    description:
+      "Python, C++, Java, and custom software development solutions for research, automation, and engineering applications.",
+    icon: <Terminal className="w-10 h-10 text-emerald-400" />,
+  },
+  {
+    title: "Web Development & Full-Stack Solutions",
+    description:
+      "Custom web development including portfolio websites, company websites, e-commerce platforms, and personal blogs. Expertise in modern technologies like React.js, MongoDB, Express.js, Node.js, Python (Flask, Django).",
+    icon: <Globe className="w-10 h-10 text-emerald-400" />,
+  },
 ];
+
 
 const Services: React.FC = () => {
   return (
