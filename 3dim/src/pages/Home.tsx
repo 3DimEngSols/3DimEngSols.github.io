@@ -9,7 +9,7 @@ import Posts from "../components/posts.tsx";
 
 const HomePage: React.FC = () => {
   return (
-    <div className="bg-black text-white">
+    <div className="bg-neutral-50 text-neutral-900">
       <Navbar />
       <Hero />
       {/* Sections with IDs */}

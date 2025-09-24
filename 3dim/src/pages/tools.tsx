@@ -109,60 +109,84 @@ const DigitalTools: React.FC = () => {
   const [showContact, setShowContact] = useState(false);
 
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-900 via-black to-gray-900 text-center px-6">
+    <div className="bg-gradient-professional text-neutral-900 min-h-screen">
       <Navbar />
-      <h2 className="text-4xl font-extrabold text-emerald-400 mb-12">
-        🔥 Digi-Tech Premium Tools & Subscriptions
-      </h2>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
-        {tools.map((tool, i) => (
-          <div
-            key={i}
-            className="p-6 flex flex-col items-center justify-between bg-gray-800/50 border border-gray-700 rounded-2xl shadow-lg hover:shadow-emerald-500/30 transition transform hover:-translate-y-2"
-          >
-            <div>
-              <div className="flex justify-center mb-4">{tool.icon}</div>
-              <h3 className="text-lg font-bold text-white">{tool.name}</h3>
-              <p className="text-gray-400 text-sm mt-2">{tool.category}</p>
+      <section className="section-padding pt-20 relative overflow-hidden mt-10">
+        {/* Background decoration */}
+        <div className="absolute top-10 left-10 w-40 h-40 bg-primary-100 rounded-full blur-3xl opacity-30 animate-pulse" />
+        <div className="absolute bottom-10 right-10 w-60 h-60 bg-secondary-100 rounded-full blur-3xl opacity-20 animate-pulse" />
+        
+        <div className="container-custom relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-block px-6 py-3 bg-gradient-to-r from-primary-100 to-secondary-100 rounded-full border border-primary-200/50 mb-6">
+              <span className="text-sm font-semibold text-gradient">🔥 Premium Tools</span>
             </div>
-            <button
-              onClick={() => setShowContact(true)}
-              className="mt-6 px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition"
-            >
-              Buy Now
-            </button>
+            
+            <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
+              Digi-Tech Premium <span className="text-primary-600 border-b-4 border-secondary-600 pb-2">Tools & Subscriptions</span>
+            </h2>
+            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+              Access premium digital tools and subscriptions at competitive prices to boost your productivity and creativity.
+            </p>
           </div>
-        ))}
-      </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {tools.map((tool, i) => (
+              <div
+                key={i}
+                className="card-premium p-6 hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden"
+              >
+                {/* Background gradient on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 to-secondary-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                <div className="relative z-10">
+                  <div className="flex justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <div className="p-3 rounded-full bg-gradient-to-r from-primary-100 to-secondary-100 group-hover:shadow-lg transition-all duration-300">
+                      {tool.icon}
+                    </div>
+                  </div>
+                  <h3 className="text-lg font-bold text-neutral-900 mb-2 group-hover:text-primary-600 transition-all duration-300">{tool.name}</h3>
+                  <p className="text-neutral-500 text-sm mb-6 group-hover:text-neutral-600 transition-colors duration-300">{tool.category}</p>
+                  <button
+                    onClick={() => setShowContact(true)}
+                    className="w-full btn-primary"
+                  >
+                    Buy Now
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Contact Modal */}
       {showContact && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/70 z-50">
-          <div className="bg-gray-900 p-8 rounded-2xl max-w-lg w-full relative shadow-lg border border-gray-700">
+        <div className="fixed inset-0 flex items-center justify-center bg-black/70 z-50 p-4">
+          <div className="card-premium p-8 max-w-lg w-full relative">
             <button
               onClick={() => setShowContact(false)}
-              className="absolute top-3 right-3 text-gray-400 hover:text-white"
+              className="absolute top-4 right-4 text-neutral-400 hover:text-secondary-600 transition-colors p-2 rounded-full hover:bg-secondary-50"
             >
               ✖
             </button>
-            <h2 className="text-3xl font-extrabold text-emerald-400 mb-6">
-              Contact Us
+            <h2 className="text-3xl font-bold text-neutral-900 mb-6">
+              Contact <span className="text-primary-600 border-b-2 border-secondary-600 pb-1">Us</span>
             </h2>
-            <div className="space-y-6 text-gray-300">
+            <div className="space-y-6 text-neutral-600">
               <p className="text-lg">Reach out to us!</p>
-              <div className="flex flex-col items-center gap-3">
-                <div className="flex items-center gap-3">
-                  <Mail className="text-emerald-400" />
-                  <span>info@3dimengineering.com</span>
+              <div className="flex flex-col items-center gap-4">
+                <div className="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-primary-50 to-secondary-50 w-full">
+                  <Mail className="text-primary-600" />
+                  <span>3dimengineeringsolutions@gmail.com</span>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Phone className="text-emerald-400" />
+                <div className="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-primary-50 to-secondary-50 w-full">
+                  <Phone className="text-secondary-600" />
                   <span>+86 17792251931</span>
                 </div>
-                <div className="flex items-start gap-3 max-w-md text-center md:text-left">
-                  <MapPin className="text-emerald-400 mt-1" />
+                <div className="flex items-start gap-3 p-3 rounded-lg bg-gradient-to-r from-primary-50 to-secondary-50 w-full">
+                  <MapPin className="text-primary-600 mt-1" />
                   <span>
-                    E Building, 12th Floor, Chanba District, Free Trade Center, Xi’an,  
+                    E Building, 12th Floor, Chanba District, Free Trade Center, Xi'an,  
                     Shaanxi Province, 710072, P.R. China
                   </span>
                 </div>
@@ -171,7 +195,7 @@ const DigitalTools: React.FC = () => {
           </div>
         </div>
       )}
-    </section>
+    </div>
   );
 };
 

@@ -1,5 +1,5 @@
-// src/components/Posts.tsx
 import React from "react";
+import { motion } from "framer-motion";
 
 interface Post {
   title: string;
@@ -84,44 +84,82 @@ link:'https://www.linkedin.com/posts/3dim-engineering-solutions_title-optimizing
 
 const Posts: React.FC = () => {
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-900 via-black to-gray-900 text-center px-6">
-      <h2 className="text-4xl font-extrabold text-emerald-400 mb-8">
-        Recent Updates & Posts
-      </h2>
+    <section className="section-padding bg-gradient-blue-green relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-10 left-10 w-40 h-40 bg-secondary-100 rounded-full blur-3xl opacity-30 animate-pulse" />
+      <div className="absolute bottom-10 right-10 w-60 h-60 bg-primary-100 rounded-full blur-3xl opacity-20 animate-pulse" />
+      
+      <div className="container-custom relative z-10">
+        <div className="text-center mb-16">
+          <div className="inline-block px-6 py-3 bg-gradient-to-r from-primary-100 to-secondary-100 rounded-full border border-primary-200/50 mb-6">
+            <span className="text-sm font-semibold text-gradient">📰 Latest News</span>
+          </div>
+          
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6"
+          >
+            Recent Updates & <span className="text-primary-600 border-b-4 border-secondary-600 pb-2">Posts</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.7 }}
+            className="text-xl text-neutral-600 max-w-3xl mx-auto"
+          >
+            Stay updated with our latest achievements, research breakthroughs,
+            and industry insights.
+          </motion.p>
+        </div>
 
-      {/* Horizontal Scroll Container */}
-      <div className="max-w-6xl mx-auto overflow-x-auto scrollbar-thin scrollbar-thumb-emerald-500/60 scrollbar-track-gray-800/40">
-        <div className="flex flex-nowrap space-x-6 pb-4">
-          {posts.map((post, i) => (
-            <div
-              key={i}
-              className="flex-shrink-0 w-96 bg-gray-800/70 border border-gray-700 rounded-xl p-6 text-left shadow-lg hover:shadow-emerald-500/30 transition"
-            >
-              <h3 className="text-xl font-bold text-emerald-400 mb-2">
-                {post.title}
-              </h3>
-              <p className="text-gray-300 whitespace-pre-line leading-relaxed">
-                {post.content}
-              </p>
-              {post.image && (
-                <img
-                  src={post.image}
-                  alt="Post image"
-                  className="w-full mt-4 rounded-lg shadow-md"
-                />
-              )}
-              {post.link && (
-                <a
-                  href={post.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block mt-4 text-emerald-400 hover:underline"
-                >
-                  🔗 Read More
-                </a>
-              )}
-            </div>
-          ))}
+        {/* Horizontal Scroll */}
+        <div className="max-w-7xl mx-auto overflow-x-auto scrollbar-thin scrollbar-thumb-primary-300 scrollbar-track-neutral-200">
+          <div className="flex flex-nowrap space-x-6 pb-4">
+            {posts.map((post, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.6 }}
+                whileHover={{ scale: 1.05, rotate: -1 }}
+                className="flex-shrink-0 w-96 card-premium p-6 text-left relative overflow-hidden group"
+              >
+                {/* Background gradient on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 to-secondary-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                <div className="relative z-10">
+                  <h3 className="text-lg font-bold text-primary-600 mb-3 group-hover:text-neutral-900 transition-all duration-300">
+                    {post.title}
+                  </h3>
+                  <p className="text-neutral-700 whitespace-pre-line leading-relaxed group-hover:text-neutral-800 transition-colors duration-300">
+                    {post.content}
+                  </p>
+                  {post.image && (
+                    <img
+                      src={post.image}
+                      alt="Post image"
+                      className="w-full mt-4 rounded-lg shadow-md"
+                    />
+                  )}
+                  {post.link && (
+                    <a
+                      href={post.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center mt-4 text-primary-600 hover:text-secondary-600 font-medium transition-all duration-300"
+                    >
+                      🔗 Read More
+                    </a>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -15,7 +15,7 @@ const projects: Project[] = [
       "Explainable ML for Glass Powder Concrete – Published in Materials Today Communications",
     description:
       "In collaboration with our research team, we developed an XML-based approach to predict the strength of glass powder concrete, contributing to sustainable civil engineering solutions.",
-    icon: <Microscope className="w-10 h-10 text-emerald-400" />,
+    icon: <Microscope className="w-12 h-12 text-primary-600" />,
     link: "https://lnkd.in/gvdzBnCk",
   },
   {
@@ -23,61 +23,93 @@ const projects: Project[] = [
       "Explainable AI for Fly Ash Foam Concrete – Published in Sustainable Concrete",
     description:
       "Through collaborative efforts, we introduced transparent AI models for predicting the strength of fly ash foam composites, advancing eco-friendly construction materials.",
-    icon: <BookMarked className="w-10 h-10 text-emerald-400" />,
+    icon: <BookMarked className="w-12 h-12 text-secondary-600" />,
     link: "https://lnkd.in/dy-bKimA",
   },
   {
     title: "AI Summit New York 2024 – Auto Circuit Maker ChatBot",
     description:
       "Represented at The AI Summit in NYC, showcasing our collaborative work on an AI-powered chatbot for automated Verilog circuit generation, revolutionizing FPGA & ASIC design.",
-    icon: <Bot className="w-10 h-10 text-emerald-400" />,
+    icon: <Bot className="w-12 h-12 text-primary-600" />,
   },
   {
     title: "Pipe-Bursting Simulation & Defect Detection",
     description:
       "As part of a team effort, we developed cutting-edge numerical models for brittle/ductile pipe bursting and AI-driven defect detection in turbine blades using signal processing.",
-    icon: <Network className="w-10 h-10 text-emerald-400" />,
+    icon: <Network className="w-12 h-12 text-secondary-600" />,
   },
   {
     title: "Deep Reinforcement Learning for Game Optimization",
     description:
       "Collaboratively pioneered multi-agent DRL frameworks for multiplayer reach-avoid games, advancing strategy optimization and autonomous systems research.",
-    icon: <Rocket className="w-10 h-10 text-emerald-400" />,
+    icon: <Rocket className="w-12 h-12 text-primary-600" />,
   },
 ];
 
 const Projects: React.FC = () => {
   return (
-    <section
-      id="projects"
-      className="py-20 bg-gradient-to-b from-black via-gray-900 to-black text-center px-6"
-    >
-      <h2 className="text-4xl font-extrabold text-emerald-400 mb-12">
-        Research & Projects
-      </h2>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
-        {projects.map((proj, i) => (
-          <div
-            key={i}
-            className="p-8 bg-gray-800/50 border border-gray-700 rounded-2xl shadow-lg hover:shadow-emerald-500/30 transition transform hover:-translate-y-2"
-          >
-            <div className="flex justify-center mb-4">{proj.icon}</div>
-            <h3 className="text-lg font-bold text-white">{proj.title}</h3>
-            <p className="text-gray-300 mt-3 text-sm leading-relaxed">
-              {proj.description}
-            </p>
-            {proj.link && (
-              <a
-                href={proj.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block mt-4 text-emerald-400 hover:underline text-sm"
-              >
-                Read More →
-              </a>
-            )}
+    <section id="projects" className="section-padding bg-gradient-blue-green relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-20 right-20 w-32 h-32 bg-secondary-100 rounded-full blur-3xl opacity-30 animate-pulse" />
+      <div className="absolute bottom-20 left-20 w-48 h-48 bg-primary-100 rounded-full blur-3xl opacity-20 animate-pulse" />
+
+      <div className="container-custom relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <div className="inline-block px-6 py-3 bg-gradient-to-r from-primary-100 to-secondary-100 rounded-full border border-primary-200/50 mb-6">
+            <span className="text-sm font-semibold text-gradient">🔬 Research Excellence</span>
           </div>
-        ))}
+          
+          <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
+            Research & <span className="text-primary-600 border-b-4 border-secondary-600 pb-2">Projects</span>
+          </h2>
+          <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+            Cutting-edge research and innovative projects that push the boundaries of engineering excellence.
+          </p>
+        </div>
+
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {projects.map((proj, i) => (
+            <div
+              key={i}
+              className="group card-premium p-8 relative transition-all duration-500 hover:-translate-y-2 hover:rotate-1 overflow-hidden"
+            >
+              {/* Background gradient on hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 to-secondary-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              
+              <div className="relative z-10">
+                {/* Icon with glow */}
+                <div className="flex justify-center mb-6">
+                  <div className="p-4 rounded-full bg-gradient-to-r from-primary-100 to-secondary-100 group-hover:shadow-lg transition-all duration-300 group-hover:scale-110 border-2 border-secondary-200 group-hover:border-secondary-400">
+                    {proj.icon}
+                  </div>
+                </div>
+
+                {/* Content */}
+                <h3 className="text-lg font-bold text-neutral-900 mb-4 group-hover:text-primary-600 transition-all duration-300">
+                  {proj.title}
+                </h3>
+                <p className="text-neutral-600 leading-relaxed mb-4 group-hover:text-neutral-700 transition-colors duration-300">
+                  {proj.description}
+                </p>
+
+                {/* Read More Link */}
+                {proj.link && (
+                  <a
+                    href={proj.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center font-medium text-primary-600 hover:text-secondary-600 transition-all relative group/link"
+                  >
+                    Read More →
+                    <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-secondary-600 group-hover/link:w-full transition-all duration-300"></span>
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

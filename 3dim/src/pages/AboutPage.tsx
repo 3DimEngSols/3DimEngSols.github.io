@@ -5,7 +5,7 @@ import Footer from "../components/footer.tsx";
 
 const AboutPage: React.FC = () => {
   return (
-    <div className="bg-black text-white">
+    <div className="bg-neutral-50 text-neutral-900">
       <Navbar />
       <Team />
       <Mission />

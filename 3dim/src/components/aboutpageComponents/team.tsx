@@ -43,7 +43,7 @@ As Co-Founder of 3Dim Engineering Solutions, he leads innovation in mechanical a
     bio: `Civil engineer specializing in structural design and analysis with strong project execution experience.`,
   },
   {
-    name: "Shamsher",
+    name: "Shamsher Ali",
     role: "Mechanical Engineer | Composites & FEA Specialist",
     image: "/Images/shamsher.jpg",
     bio: `Research-oriented professional with expertise in Mechanics, Materials, Composites, 3D CAD, and Finite Element Analysis (FEA). 
@@ -53,7 +53,7 @@ turning theoretical concepts into practical, high-performance applications. His 
 material science, and design optimization.`,
   },
   {
-    name: "Huzaifa",
+    name: "Huzaifa Azam",
     role: "Mechanical Engineer | CAD & Multiphysics Simulation Engineer",
     image: "/Images/Huzaifa1.jpeg",
     bio: `Mechanical engineer with expertise in 3D modeling using SolidWorks, Creo, and AutoCAD, combined with research experience in 
@@ -62,7 +62,7 @@ analysis in piping systems. His focus is on delivering innovative mechanical sol
 with data-driven approaches. He brings strong skills in project planning, manufacturing, and mechanical system optimization.`,
   },
   {
-    name: "Sheraz",
+    name: "Muhammad Sheraz",
     role: "Materials Scientist | Polymer & Hydrogel Researcher",
     image: "/Images/sheraz1.jpeg",
     bio: `Specialist in natural polymers, hydrogels, and multifunctional materials with extensive research and publications in 
@@ -83,6 +83,12 @@ With 3 years of professional experience in power systems, Muhammad brings practi
 design and analysis. His specialized research in power electronics converter topologies positions him at the forefront 
 of developing efficient energy conversion systems for sustainable technologies.`,
   },
+  {
+    name: "Muhammad Aliyan",
+    role: "Full Stack Developer | Web Developer",
+    image: "/Images/Aliyan.jpeg", 
+    bio: `I transform ideas into high-performance, full-stack web applications. By combining a strong foundation in backend technologies like Node.js, Django, and C++ with expertise in modern front-end frameworks like React.js, I build seamless and intelligent user experiences. My proficiency in designing data architectures with MongoDB and PostgreSQL ensures that every application is both powerful and scalable.`,
+  },
 ];
 
 const Team: React.FC = () => {
@@ -92,59 +98,127 @@ const Team: React.FC = () => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
 
+  const founders = teamMembers.filter((m) => m.isFounder);
+  const others = teamMembers.filter((m) => !m.isFounder);
+
   return (
-    <section className="py-20 bg-gradient-to-b from-black via-gray-900 to-black text-center px-6">
-      <h2 className="text-4xl font-extrabold text-emerald-400 mb-12">
-        Our Core Team
-      </h2>
-      <p className="max-w-3xl mx-auto text-gray-300 mb-16 text-lg leading-relaxed">
-        Our team is a diverse collection of experts in multiple domains ranging
-        from mechanical design and analysis, architectural and civil design and
-        analysis to AI integration and applications. With a portfolio of 100+
-        successful projects, we take pride in delivering solutions that exceed
-        client expectations.
-      </p>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
-        {teamMembers.map((member, i) => (
-          <div
-            key={i}
-            className={`p-8 rounded-2xl shadow-lg transition transform hover:-translate-y-2 hover:shadow-emerald-500/40 
-            ${
-              member.isFounder
-                ? "bg-gray-900 border-2 border-emerald-500 scale-105"
-                : "bg-gray-800/50 border border-gray-700"
-            }`}
-          >
-            <img
-              src={member.image}
-              alt={member.name}
-              className={`w-32 h-32 rounded-full mx-auto object-cover border-4 shadow-md ${
-                member.isFounder ? "border-emerald-400" : "border-gray-600"
-              }`}
-            />
-            <h3 className="mt-6 text-2xl font-bold text-white">
-              {member.name}
-            </h3>
-            <p className="text-emerald-400 font-medium">{member.role}</p>
-
-            <button
-              onClick={() => toggleExpand(i)}
-              className="mt-4 text-sm text-emerald-300 hover:text-emerald-200 transition"
-            >
-              {expandedIndex === i ? "▲ Hide Bio" : "▼ Read Bio"}
-            </button>
-
-            <div
-              className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                expandedIndex === i ? "max-h-96 mt-4" : "max-h-0"
-              }`}
-            >
-              <p className="text-gray-300 text-sm leading-relaxed whitespace-pre-line">
-                {member.bio}
-              </p>
-            </div>
+    <section className="section-padding bg-gradient-professional relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-10 left-10 w-40 h-40 bg-primary-100 rounded-full blur-3xl opacity-30 animate-pulse" />
+      <div className="absolute bottom-10 right-10 w-60 h-60 bg-secondary-100 rounded-full blur-3xl opacity-20 animate-pulse" />
+      
+      <div className="container-custom relative z-10">
+        {/* Section Heading */}
+        <div className="text-center mb-16 mt-10">
+          <div className="inline-block px-6 py-3 bg-gradient-to-r from-primary-100 to-secondary-100 rounded-full border border-primary-200/50 mb-6">
+            <span className="text-sm font-semibold text-gradient">👥 Meet Our Team</span>
           </div>
-        ))}
+          
+          <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
+            Meet Our <span className="text-primary-600 border-b-4 border-secondary-600 pb-2">Core Team</span>
+          </h2>
+          <p className="max-w-4xl mx-auto text-lg md:text-xl text-neutral-600 leading-relaxed">
+            A multidisciplinary team driving innovation across AI, mechanical design,
+            civil engineering, power systems, and full-stack development.
+            Together, we've delivered 100+ successful projects worldwide.
+          </p>
+        </div>
+
+        {/* Founders Section */}
+        <div className="mb-20">
+          <h3 className="text-2xl font-semibold text-center text-primary-600 mb-10 border-b-2 border-secondary-600 pb-2 inline-block">
+            Our Founders
+          </h3>
+          <div className="grid md:grid-cols-2 gap-10">
+            {founders.map((member, i) => (
+              <div
+                key={i}
+                className="relative card-premium p-8 hover:shadow-xl transition-all duration-300 group overflow-hidden"
+              >
+                {/* Background gradient on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-50/50 to-secondary-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative z-10 flex flex-col items-center text-center">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-36 h-36 rounded-full object-cover border-4 border-secondary-500 shadow-md mb-6 group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <h3 className="text-2xl font-bold text-neutral-900 mb-2 group-hover:text-primary-600 transition-all duration-300">
+                    {member.name}
+                  </h3>
+                  <p className="text-primary-600 font-medium mb-4">
+                    {member.role}
+                  </p>
+                  <button
+                    onClick={() => toggleExpand(i)}
+                    className="text-sm text-primary-600 hover:text-secondary-600 font-semibold transition-colors mb-4"
+                  >
+                    {expandedIndex === i ? "▲ Hide Bio" : "▼ Read Bio"}
+                  </button>
+                  <div
+                    className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                      expandedIndex === i ? "max-h-96" : "max-h-0"
+                    }`}
+                  >
+                    <p className="text-neutral-700 text-sm leading-relaxed whitespace-pre-line">
+                      {member.bio}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Rest of Team */}
+        <div>
+          <h3 className="text-2xl font-semibold text-center text-primary-600 mb-10 border-b-2 border-secondary-600 pb-2 inline-block">
+            Our Team
+          </h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {others.map((member, i) => (
+              <div
+                key={i}
+                className="card p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden"
+              >
+                {/* Background gradient on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 to-secondary-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative z-10 flex flex-col items-center text-center">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-28 h-28 rounded-full object-cover border-2 border-secondary-300 shadow mb-4 group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <h3 className="text-lg font-bold text-neutral-900 mb-1 group-hover:text-primary-600 transition-all duration-300">
+                    {member.name}
+                  </h3>
+                  <p className="text-primary-600 text-sm font-medium mb-3">
+                    {member.role}
+                  </p>
+                  <button
+                    onClick={() => toggleExpand(i + founders.length)}
+                    className="text-xs text-primary-600 hover:text-secondary-600 font-semibold transition-colors mb-3"
+                  >
+                    {expandedIndex === i + founders.length
+                      ? "▲ Hide Bio"
+                      : "▼ Read Bio"}
+                  </button>
+                  <div
+                    className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                      expandedIndex === i + founders.length
+                        ? "max-h-64"
+                        : "max-h-0"
+                    }`}
+                  >
+                    <p className="text-neutral-600 text-xs leading-relaxed whitespace-pre-line">
+                      {member.bio}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

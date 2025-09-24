@@ -1,3 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  body {
+    @apply bg-neutral-50 text-neutral-900;
+    line-height: 1.6;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-green hover:shadow-lg transform hover:scale-105;
+  }
+  
+  .btn-secondary {
+    @apply bg-white hover:bg-secondary-50 text-secondary-600 border-2 border-secondary-600 hover:border-secondary-700 font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-soft hover:shadow-blue transform hover:scale-105;
+  }
+  
+  .btn-accent {
+    @apply bg-gradient-to-r from-secondary-600 to-secondary-700 hover:from-secondary-700 hover:to-secondary-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-blue hover:shadow-lg transform hover:scale-105;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-soft border border-neutral-200/50 hover:shadow-soft-lg transition-all duration-300 backdrop-blur-sm;
+  }
+  
+  .card-premium {
+    @apply bg-gradient-to-br from-white to-secondary-50 rounded-2xl shadow-lg border border-secondary-200/50 hover:shadow-blue transition-all duration-300 backdrop-blur-sm;
+  }
+  
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .text-gradient {
+    @apply text-primary-600;
+  }
+  
+  .bg-gradient-professional {
+    @apply bg-gradient-to-br from-white via-secondary-50 to-primary-50;
+  }
+  
+  .bg-gradient-blue-green {
+    @apply bg-gradient-to-br from-secondary-50 via-white to-primary-50;
+  }
+}
