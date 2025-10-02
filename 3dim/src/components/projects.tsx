@@ -1,6 +1,6 @@
 // src/components/homepageComponents/Projects.tsx
 import React from "react";
-import { BookMarked, Rocket, Network, Bot, Microscope } from "lucide-react";
+import { BookMarked, Rocket, Network, Bot, Microscope,Globe, Users, MessageCircle } from "lucide-react";
 
 interface Project {
   title: string;
@@ -8,6 +8,7 @@ interface Project {
   icon: React.ReactNode;
   link?: string;
 }
+
 
 const projects: Project[] = [
   {
@@ -44,7 +45,34 @@ const projects: Project[] = [
       "Collaboratively pioneered multi-agent DRL frameworks for multiplayer reach-avoid games, advancing strategy optimization and autonomous systems research.",
     icon: <Rocket className="w-12 h-12 text-primary-600" />,
   },
+
+  // 🔥 New Generalized Projects
+  {
+    title: "Online Freelance Services Platform",
+    description:
+      "A cloud-deployed web marketplace that connects service providers with clients, featuring secure user authentication, real-time dashboards, and scalable media management.",
+    icon: <Globe className="w-12 h-12 text-primary-600" />,
+  },
+  {
+    title: "Community Networking Application",
+    description:
+      "A social platform enabling users to share updates, interact through posts and media, and stay connected in real time with an intuitive, mobile-friendly interface.",
+    icon: <Users className="w-12 h-12 text-secondary-600" />,
+  },
+  {
+    title: "Live Messaging & Collaboration Tool",
+    description:
+      "A real-time chat system supporting instant messaging, media sharing, online status tracking, and persistent chat history with seamless synchronization.",
+    icon: <MessageCircle className="w-12 h-12 text-primary-600" />,
+  },
+  {
+    title: "AI-Integrated Productivity Assistant",
+    description:
+      "An intelligent document assistant that leverages large language models for summarization, Q&A, and interactive chatbot support within a modern web application.",
+    icon: <Bot className="w-12 h-12 text-secondary-600" />,
+  },
 ];
+
 
 const Projects: React.FC = () => {
   return (

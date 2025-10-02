@@ -6,6 +6,7 @@ import AboutIntro from "../components/about.tsx";
 import Contact from "../components/contact.tsx";
 import Footer from "../components/footer.tsx";
 import Posts from "../components/posts.tsx";
+import Tools from "../components/tools.tsx";
 
 const HomePage: React.FC = () => {
   return (
@@ -16,6 +17,10 @@ const HomePage: React.FC = () => {
       <div id="services">
         <Services />
       </div>
+      <div id="tools">
+        <Tools />
+      </div>
+
       <div id="projects">
         <Projects />
       </div>
