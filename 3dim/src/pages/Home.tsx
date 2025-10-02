@@ -14,6 +14,9 @@ const HomePage: React.FC = () => {
       <Navbar />
       <Hero />
       {/* Sections with IDs */}
+      <div id="about">
+        <AboutIntro />
+      </div>
       <div id="services">
         <Services />
       </div>
@@ -24,9 +27,7 @@ const HomePage: React.FC = () => {
       <div id="projects">
         <Projects />
       </div>
-      <div id="about">
-        <AboutIntro />
-      </div>
+      
       <div id="posts">
         <Posts /> {/* ✅ new section */}
       </div>
