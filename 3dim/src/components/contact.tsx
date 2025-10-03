@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Globe, MessageCircle } from "lucide-react";
+import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 const contactInfo = [
@@ -11,7 +11,7 @@ const contactInfo = [
   },
   {
     icon: <Phone className="w-8 h-8 text-secondary-600" />,
-    title: "Phone",
+    title: "Phone/WeChat",
     value: "+86 17792251931",
     color: "secondary",
     link: "tel:+8617792251931",
@@ -24,20 +24,19 @@ const contactInfo = [
     color: "primary",
   },
   {
-    icon: <Globe className="w-8 h-8 text-green-700" />,
-    title: "ORCID",
-    value: "View Profile",
+    icon: <MessageCircle className="w-8 h-8 text-green-600" />,
+    title: "WeChat",
+    value: "Scan QR to Connect",
     color: "primary",
-    link: "https://orcid.org/0009-0007-3759-2125",
+    qr: "/Images/WeChat.jpeg", // ✅ QR code image path
   },
   {
-  icon: <MessageCircle className="w-8 h-8 text-green-600" />,
-  title: "WhatsApp",
-  value: "+86 17792251931",
-  color: "secondary",
-  link: "https://wa.me/8617792251931", 
-},
-
+    icon: <MessageCircle className="w-8 h-8 text-green-600" />,
+    title: "WhatsApp",
+    value: "+86 17792251931",
+    color: "secondary",
+    link: "https://wa.me/8617792251931",
+  },
 ];
 
 const Contact: React.FC = () => {
@@ -83,47 +82,64 @@ const Contact: React.FC = () => {
         </div>
 
         <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
-          {contactInfo.map((info, i) => (
-            <motion.a
-              key={i}
-              href={info.link || "#"}
-              target={info.link ? "_blank" : undefined}
-              rel={info.link ? "noopener noreferrer" : undefined}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.2, duration: 0.7 }}
-              whileHover={{ scale: 1.05, rotateY: 5 }}
-              className="card-premium p-8 flex flex-col items-center text-center relative overflow-hidden group"
-            >
-              {/* Background gradient on hover */}
-              <div
-                className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-                  info.color === "primary"
-                    ? "bg-gradient-to-br from-primary-50/50 to-primary-100/50"
-                    : "bg-gradient-to-br from-secondary-50/50 to-secondary-100/50"
-                }`}
-              ></div>
+          {contactInfo.map((info, i) => {
+            const Wrapper = info.link ? motion.a : motion.div;
 
-              <div className="relative z-10">
+            return (
+              <Wrapper
+                key={i}
+                href={info.link || undefined}
+                target={info.link ? "_blank" : undefined}
+                rel={info.link ? "noopener noreferrer" : undefined}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.2, duration: 0.7 }}
+                whileHover={{ scale: 1.05, rotateY: 5 }}
+                className="card-premium p-8 flex flex-col items-center text-center relative overflow-hidden group"
+              >
+                {/* Background gradient on hover */}
                 <div
-                  className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 ${
+                  className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
                     info.color === "primary"
-                      ? "bg-gradient-to-r from-primary-100 to-primary-200"
-                      : "bg-gradient-to-r from-secondary-100 to-secondary-200"
+                      ? "bg-gradient-to-br from-primary-50/50 to-primary-100/50"
+                      : "bg-gradient-to-br from-secondary-50/50 to-secondary-100/50"
                   }`}
-                >
-                  {info.icon}
+                ></div>
+
+                <div className="relative z-10">
+                  <div
+                    className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 ${
+                      info.color === "primary"
+                        ? "bg-gradient-to-r from-primary-100 to-primary-200"
+                        : "bg-gradient-to-r from-secondary-100 to-secondary-200"
+                    }`}
+                  >
+                    {info.icon}
+                  </div>
+                  <h3 className="font-semibold text-neutral-900 mb-2 group-hover:text-primary-600 transition-all duration-300">
+                    {info.title}
+                  </h3>
+                  <p className="text-neutral-600 text-sm group-hover:text-neutral-700 transition-colors duration-300">
+                    {info.value}
+                  </p>
+                  {info.qr ? (
+                    <img
+                      src={info.qr}
+                      alt="WeChat QR"
+                      className="w-32 h-32 mx-auto mt-4 rounded-lg shadow-md border"
+                    />
+                  ) : (
+                    info.link && (
+                      <span className="text-sm text-primary-600 underline mt-4 inline-block">
+                        Open Link
+                      </span>
+                    )
+                  )}
                 </div>
-                <h3 className="font-semibold text-neutral-900 mb-2 group-hover:text-primary-600 transition-all duration-300">
-                  {info.title}
-                </h3>
-                <p className="text-neutral-600 text-sm group-hover:text-neutral-700 transition-colors duration-300">
-                  {info.value}
-                </p>
-              </div>
-            </motion.a>
-          ))}
+              </Wrapper>
+            );
+          })}
         </div>
       </div>
     </section>

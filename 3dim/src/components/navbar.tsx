@@ -41,6 +41,10 @@ const Navbar: React.FC = () => {
 
           {/* Desktop Links */}
           <div className="hidden md:flex gap-8 text-neutral-700 font-medium">
+            <Link to="/" className="relative group/link hover:text-primary-600 transition-colors duration-300">
+              Home
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary-600 group-hover/link:w-full transition-all duration-300"></span>
+            </Link>
             <button onClick={() => handleNavClick("services")} className="relative group/link hover:text-primary-600 transition-colors duration-300">
               Services
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary-600 group-hover/link:w-full transition-all duration-300"></span>
@@ -54,7 +58,7 @@ const Navbar: React.FC = () => {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary-600 group-hover/link:w-full transition-all duration-300"></span>
             </Link>
             <Link to="/about" className="relative group/link hover:text-primary-600 transition-colors duration-300">
-              About
+              Our Team
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary-600 group-hover/link:w-full transition-all duration-300"></span>
             </Link>
             <button onClick={() => handleNavClick("contact")} className="relative group/link hover:text-primary-600 transition-colors duration-300">

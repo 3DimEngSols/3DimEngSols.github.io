@@ -48,28 +48,33 @@ interface Tool {
 const tools: Tool[] = [
   { name: "ChatGPT Plus", icon: <SiOpenai className="w-8 h-8 text-emerald-400" />, category: "AI & Productivity" },
   { name: "Perplexity AI", icon: <Brain className="w-8 h-8 text-purple-400" />, category: "AI & Productivity" },
-  { name: "Cursor AI", icon: <Laptop className="w-8 h-8 text-indigo-400" />, category: "AI Coding" },
   { name: "Grok (Super Heavy Plan)", icon: <Brain className="w-8 h-8 text-yellow-500" />, category: "AI & Productivity" },
-  { name: "LinkedIn Premium", icon: <Linkedin className="w-8 h-8 text-blue-600" />, category: "Professional Growth" },
+  { name: "Windows 10/11 Pro", icon: <Laptop className="w-8 h-8 text-blue-400" />, category: "Operating System" },
+  { name: "Turnitin + Stealth Writer", icon: <BookOpen className="w-8 h-8 text-rose-500" />, category: "Academic Tools" },
+  { name: "QuillBot Pro", icon: <PenTool className="w-8 h-8 text-yellow-400" />, category: "Writing & Productivity" },
+  { name: "Coursera Plus", icon: <SiCoursera className="w-8 h-8 text-blue-500" />, category: "Learning" },
+  { name: "Chegg", icon: <FaBookOpen  className="w-8 h-8 text-orange-500" />, category: "Learning" },
+  { name: "Canva Pro", icon: <SiCanva className="w-8 h-8 text-sky-500" />, category: "Design & Creativity" },
+  { name: "Adobe Creative Cloud", icon: <SiAdobe className="w-8 h-8 text-red-500" />, category: "Design & Creativity" },
+  { name: "Figma Pro", icon: <FaFigma className="w-8 h-8 text-pink-500" />, category: "Design & Creativity" },
   { name: "Microsoft 365 Premium", icon: <FaMicrosoft className="w-8 h-8 text-blue-500" />, category: "Productivity" },
   { name: "Grammarly Premium", icon: <SiGrammarly className="w-8 h-8 text-green-500" />, category: "Writing & Productivity" },
-  { name: "Chegg", icon: <FaBookOpen  className="w-8 h-8 text-orange-500" />, category: "Learning" },
-  { name: "Coursera Plus", icon: <SiCoursera className="w-8 h-8 text-blue-500" />, category: "Learning" },
+  { name: "Microsoft Office (2016/2019/2021)", icon: <FaMicrosoft className="w-8 h-8 text-orange-400" />, category: "Productivity" },
+  { name: "YouTube Premium", icon: <FaYoutube className="w-8 h-8 text-red-500" />, category: "Music & Media" },
+
+  { name: "Cursor AI", icon: <Laptop className="w-8 h-8 text-indigo-400" />, category: "AI Coding" },
+  { name: "LinkedIn Premium", icon: <Linkedin className="w-8 h-8 text-blue-600" />, category: "Professional Growth" },
+  
   { name: "Datacamp", icon: <Database className="w-8 h-8 text-green-400" />, category: "Learning" },
   { name: "Google Workspace (50TB)", icon: <FaGoogle className="w-8 h-8 text-yellow-500" />, category: "Productivity" },
   { name: "Rezi.ai", icon: <PenTool className="w-8 h-8 text-emerald-400" />, category: "Career Tools" },
-  { name: "YouTube Premium", icon: <FaYoutube className="w-8 h-8 text-red-500" />, category: "Music & Media" },
   { name: "Spotify Premium", icon: <FaSpotify className="w-8 h-8 text-green-500" />, category: "Music & Media" },
   { name: "Apple Music", icon: <FaApple className="w-8 h-8 text-gray-300" />, category: "Music & Media" },
   { name: "Amazon Music", icon: <Music className="w-8 h-8 text-indigo-500" />, category: "Music & Media" },
-  { name: "Microsoft Office (2016/2019/2021)", icon: <FaMicrosoft className="w-8 h-8 text-orange-400" />, category: "Productivity" },
   // --- Engineering & CAD ---
   { name: "Autodesk AutoCAD", icon: <SiAutodesk className="w-8 h-8 text-teal-500" />, category: "Engineering & CAD" },
   // --- Design & Creativity ---
-  { name: "Adobe Creative Cloud", icon: <SiAdobe className="w-8 h-8 text-red-500" />, category: "Design & Creativity" },
   { name: "Adobe Firefly Video Gen", icon: <SiAdobe className="w-8 h-8 text-orange-500" />, category: "Design & Creativity" },
-  { name: "Figma Pro", icon: <FaFigma className="w-8 h-8 text-pink-500" />, category: "Design & Creativity" },
-  { name: "Canva Pro", icon: <SiCanva className="w-8 h-8 text-sky-500" />, category: "Design & Creativity" },
   { name: "Envato Elements", icon: <SiWordpress className="w-8 h-8 text-green-500" />, category: "Design & Creativity" },
   { name: "Shutterstock", icon: <SiShutterstock className="w-8 h-8 text-red-400" />, category: "Design & Creativity" },
   { name: "Freepik", icon: <Layers className="w-8 h-8 text-blue-400" />, category: "Design & Creativity" },
@@ -78,13 +83,11 @@ const tools: Tool[] = [
 
   // --- Writing & Productivity ---
   
-  { name: "QuillBot Pro", icon: <PenTool className="w-8 h-8 text-yellow-400" />, category: "Writing & Productivity" },
   { name: "Wordtune", icon: <BookOpen className="w-8 h-8 text-violet-400" />, category: "Writing & Productivity" },
   { name: "Copy.ai", icon: <Brain className="w-8 h-8 text-cyan-400" />, category: "Writing & Productivity" },
   { name: "Notion AI", icon: <Database className="w-8 h-8 text-white" />, category: "Writing & Productivity" },
 
   // --- Academic Tools ---
-  { name: "Turnitin + Stealth Writer", icon: <BookOpen className="w-8 h-8 text-rose-500" />, category: "Academic Tools" },
   { name: "Course Hero", icon: <BookOpen className="w-8 h-8 text-indigo-500" />, category: "Academic Tools" },
 
   // --- Learning ---
@@ -112,7 +115,6 @@ const tools: Tool[] = [
   
 
   // --- OS & Software ---
-  { name: "Windows 10/11 Pro", icon: <Laptop className="w-8 h-8 text-blue-400" />, category: "Operating System" },
   
 ];
 
