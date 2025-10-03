@@ -18,7 +18,10 @@ import {
   Package,
   Braces,
   Brain,
-  Terminal
+  Terminal,
+  Phone,
+  Music,
+  Laptop,
 } from "lucide-react";
 
 interface Tool {
@@ -43,6 +46,24 @@ const tools: Tool[] = [
   { name: "CSI SAFE", category: "Civil/Structural", icon: <Layers className="w-8 h-8 text-primary-600" /> },
   { name: "Autodesk Civil 3D", category: "Civil/Structural", icon: <Layers className="w-8 h-8 text-secondary-600" /> },
   { name: "Building Information Modeling (BIM)", category: "Civil/Structural", icon: <Layers className="w-8 h-8 text-primary-600" /> },
+  // --- Agentic AI Tools ---
+{ name: "LangChain", icon: <Brain className="w-8 h-8 text-indigo-500" />, category: "Agentic AI Tools" },
+{ name: "LangGraph", icon: <Layers className="w-8 h-8 text-purple-500" />, category: "Agentic AI Tools" },
+{ name: "MCP", icon: <Database className="w-8 h-8 text-green-500" />, category: "Agentic AI Tools" },
+{ name: "CrueAI", icon: <Atom className="w-8 h-8 text-pink-500" />, category: "Agentic AI Tools" },
+{ name: "AutoGen", icon: <Cpu className="w-8 h-8 text-orange-500" />, category: "Agentic AI Tools" },
+
+// --- Voice AI & Automation ---
+{ name: "Twilio", icon: <Phone className="w-8 h-8 text-red-500" />, category: "Voice AI & Automation" },
+{ name: "Retell AI", icon: <Globe className="w-8 h-8 text-cyan-500" />, category: "Voice AI & Automation" },
+{ name: "Vapi", icon: <Terminal className="w-8 h-8 text-yellow-500" />, category: "Voice AI & Automation" },
+{ name: "ElevenLabs", icon: <Music className="w-8 h-8 text-orange-500" />, category: "Voice AI & Automation" },
+
+// --- No-Code Automation ---
+{ name: "n8n", icon: <Wrench className="w-8 h-8 text-teal-500" />, category: "No-Code Automation" },
+{ name: "Zapier", icon: <Globe className="w-8 h-8 text-orange-400" />, category: "No-Code Automation" },
+{ name: "Make.com", icon: <Laptop className="w-8 h-8 text-blue-500" />, category: "No-Code Automation" },
+
 
   // Programming & AI
   { name: "Python", category: "Programming & AI", icon: <Code className="w-8 h-8 text-primary-600" /> },

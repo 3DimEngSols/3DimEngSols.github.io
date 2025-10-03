@@ -47,11 +47,12 @@ const services: Service[] = [
     icon: <Cpu className="w-12 h-12 text-secondary-600" />,
   },
   {
-    title: "Composites & Advanced Materials",
+    title: "Computer Vision & Image Processing",
     description:
-      "Smart/nano composites, solid mechanics, additive manufacturing, and computational material modeling expertise.",
-    icon: <Atom className="w-12 h-12 text-primary-600" />,
+      "Real-time vision systems for UAVs, robotics, and industry applications, with expertise in YOLO, object detection, and image analysis.",
+    icon: <Globe className="w-12 h-12 text-primary-600" />,
   },
+  
   {
     title: "Artificial Intelligence & Machine Learning",
     description:
@@ -59,10 +60,17 @@ const services: Service[] = [
     icon: <Brain className="w-12 h-12 text-secondary-600" />,
   },
   {
-    title: "Computer Vision & Image Processing",
+  title: "Agentic AI Systems",
+  description:
+    "Design and deploy advanced AI agents, multi-agent workflows, and multi-tool integrations using frameworks like LangChain, LangGraph, MCP, CrueAI, and AutoGen. Expertise also includes building voice AI agents with Twilio, Retell AI, Vapi, and ElevenLabs for industries such as dental, real estate, barbershops, and customer support.",
+  icon: <Brain className="w-12 h-12 text-emerald-600" />,
+},
+
+  {
+    title: "Composites & Advanced Materials",
     description:
-      "Real-time vision systems for UAVs, robotics, and industry applications, with expertise in YOLO, object detection, and image analysis.",
-    icon: <Globe className="w-12 h-12 text-primary-600" />,
+      "Smart/nano composites, solid mechanics, additive manufacturing, and computational material modeling expertise.",
+    icon: <Atom className="w-12 h-12 text-primary-600" />,
   },
   {
     title: "Chemistry & Materials Science",
