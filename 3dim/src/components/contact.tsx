@@ -10,12 +10,14 @@ const contactInfo = [
     link: "mailto:3dimengineeringsolutions@gmail.com",
   },
   {
-    icon: <Phone className="w-8 h-8 text-secondary-600" />,
-    title: "Phone/WeChat",
-    value: "+86 17792251931",
-    color: "secondary",
-    link: "tel:+8617792251931",
+    icon: <MessageCircle className="w-8 h-8 text-green-600" />,
+    title: "WeChat",
+    value: "+86 17792251931", // show number
+    color: "primary",
+    qr: "/Images/WeChat.jpeg", // show QR code image
   },
+
+
   {
     icon: <MapPin className="w-8 h-8 text-primary-600" />,
     title: "Location",
@@ -23,13 +25,7 @@ const contactInfo = [
       "E Building, 12th Floor, Chanba District, Free Trade Center, Xi'an, Shaanxi Province, 710072, P.R. China",
     color: "primary",
   },
-  {
-    icon: <MessageCircle className="w-8 h-8 text-green-600" />,
-    title: "WeChat",
-    value: "Scan QR to Connect",
-    color: "primary",
-    qr: "/Images/WeChat.jpeg", // ✅ QR code image path
-  },
+  
   {
     icon: <MessageCircle className="w-8 h-8 text-green-600" />,
     title: "WhatsApp",
@@ -120,22 +116,27 @@ const Contact: React.FC = () => {
                   <h3 className="font-semibold text-neutral-900 mb-2 group-hover:text-primary-600 transition-all duration-300">
                     {info.title}
                   </h3>
-                  <p className="text-neutral-600 text-sm group-hover:text-neutral-700 transition-colors duration-300">
-                    {info.value}
-                  </p>
-                  {info.qr ? (
-                    <img
-                      src={info.qr}
-                      alt="WeChat QR"
-                      className="w-32 h-32 mx-auto mt-4 rounded-lg shadow-md border"
-                    />
+                  {info.title === "WeChat" ? (
+                    <div className="flex flex-col infos-start space-y-2">
+                      {/* Number */}
+                      <span className="text-gray-800 font-medium">{info.value}</span>
+
+                      {/* QR Code with click-to-enlarge */}
+                      <a href={info.qr} target="_blank" rel="noopener noreferrer">
+                        <img
+                          src={info.qr}
+                          alt="WeChat QR Code"
+                          className="w-28 h-28 mt-1 rounded-lg shadow-md cursor-pointer hover:scale-105 transition-transform"
+                        />
+                      </a>
+                    </div>
                   ) : (
-                    info.link && (
-                      <span className="text-sm text-primary-600 underline mt-4 inline-block">
-                        Open Link
-                      </span>
-                    )
+                    // Default rendering for other infos
+                    <a href={info.link} className="text-blue-600 hover:underline">
+                      {info.value}
+                    </a>
                   )}
+
                 </div>
               </Wrapper>
             );
