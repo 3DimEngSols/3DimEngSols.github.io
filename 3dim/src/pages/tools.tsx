@@ -192,10 +192,31 @@ const DigitalTools: React.FC = () => {
                   <Mail className="text-primary-600" />
                   <span>3dimengineeringsolutions@gmail.com</span>
                 </div>
-                <div className="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-primary-50 to-secondary-50 w-full">
-                  <Phone className="text-secondary-600" />
-                  <span>+86 17792251931</span>
-                </div>
+                {/* Phone / WeChat Section */}
+<div className="flex flex-col sm:flex-row sm:items-center gap-4 p-3 rounded-lg bg-gradient-to-r from-primary-50 to-secondary-50 w-full">
+  <div className="flex items-center gap-3">
+    <Phone className="text-secondary-600" />
+    <div className="flex flex-col">
+      <span className="font-medium text-gray-800">Phone / WeChat</span>
+      <span className="text-gray-700">+86 17792251931</span>
+    </div>
+  </div>
+
+  {/* QR Code */}
+  <a
+    href="/Images/WeChat.jpeg" // ✅ Update with your actual path
+    target="_blank"
+    rel="noopener noreferrer"
+    className="self-start sm:self-auto"
+  >
+    <img
+      src="/Images/WeChat.jpeg"
+      alt="WeChat QR Code"
+      className="w-24 h-24 rounded-lg shadow-md cursor-pointer hover:scale-105 transition-transform"
+    />
+  </a>
+</div>
+
                 <div className="flex items-start gap-3 p-3 rounded-lg bg-gradient-to-r from-primary-50 to-secondary-50 w-full">
                   <MapPin className="text-primary-600 mt-1" />
                   <span>

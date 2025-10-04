@@ -16,7 +16,13 @@ const contactInfo = [
     color: "primary",
     qr: "/Images/WeChat.jpeg", // show QR code image
   },
-
+  {
+    icon: <MessageCircle className="w-8 h-8 text-green-600" />,
+    title: "WhatsApp",
+    value: "+86 17792251931",
+    color: "secondary",
+    link: "https://wa.me/8617792251931",
+  },
 
   {
     icon: <MapPin className="w-8 h-8 text-primary-600" />,
@@ -26,13 +32,7 @@ const contactInfo = [
     color: "primary",
   },
   
-  {
-    icon: <MessageCircle className="w-8 h-8 text-green-600" />,
-    title: "WhatsApp",
-    value: "+86 17792251931",
-    color: "secondary",
-    link: "https://wa.me/8617792251931",
-  },
+  
 ];
 
 const Contact: React.FC = () => {
