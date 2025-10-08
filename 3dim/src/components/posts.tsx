@@ -142,7 +142,7 @@ const Posts: React.FC = () => {
                   {post.image && (
                     <img
                       src={post.image}
-                      alt="Post image"
+                      alt="Post"
                       className="w-full mt-4 rounded-lg shadow-md"
                     />
                   )}
