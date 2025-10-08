@@ -9,6 +9,19 @@ interface Post {
 }
 
 const posts: Post[] = [
+  {
+    title: "Biomechanical Evaluation of Implant Materials and Connection Designs – Published in Odontology 🦷📖",
+    content: `We are delighted to announce the publication of our latest research paper titled 
+“Biomechanical Evaluation of Implant Materials and Connection Designs: A Structured Narrative Review of Titanium and Zirconia” 
+in *Odontology (Springer)*.  
+
+This study explores the biomechanical performance, stress distribution, and connection design behavior 
+of titanium and zirconia implants using finite element analysis (FEA).  
+
+Conducted at 3Dim Engineering Solutions, the research highlights our commitment to advancing biomedical 
+engineering, material science, and clinical innovation for long-term success.`,
+    link: "https://lnkd.in/g7m8Ta7u",
+  },
     {
     title: "🚀 Proud Moment for 3Dim Engineering Solutions! 🚀",
     content: `We are excited to announce our representation at 
