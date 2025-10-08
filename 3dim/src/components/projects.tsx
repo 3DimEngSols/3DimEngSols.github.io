@@ -30,7 +30,7 @@ const projects: Project[] = [
     title:
       "Biomechanical Evaluation of Implant Materials and Connection Designs – Published in Odontology",
     description:
-      "Published in *Odontology (Springer)*, this study presents a structured narrative review of titanium and zirconia implant materials, exploring biomechanical characteristics, stress distribution, and connection designs via FEA. Conducted at 3Dim Engineering Solutions, the research advances biomedical engineering and material innovation for long-term clinical success.",
+      "Presents a structured narrative review of titanium and zirconia implant materials, exploring biomechanical characteristics, stress distribution, and connection designs via FEA. Conducted at 3Dim Engineering Solutions, the research advances biomedical engineering and material innovation for long-term clinical success.",
     icon: <Microscope className="w-12 h-12 text-primary-600" />,
     link: "https://lnkd.in/g7m8Ta7u",
   },
