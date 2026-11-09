@@ -1,6 +1,7 @@
-import React, { useRef } from "react";
-import { motion } from "framer-motion";
-import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import React from "react";
+import { ArrowUpRight } from "lucide-react";
+import HorizontalScroller from "./HorizontalScroller.tsx";
+import SectionHeader from "./SectionHeader.tsx";
 
 interface Post {
   title: string;
@@ -124,101 +125,65 @@ link:'https://www.linkedin.com/posts/3dim-engineering-solutions_title-optimizing
   },
 ];
 
-const Posts: React.FC = () => {
-  const scroller = useRef<HTMLDivElement>(null);
-
-  const scrollByCard = (dir: 1 | -1) => {
-    const el = scroller.current;
-    if (!el) return;
-    const card = el.querySelector("article");
-    const step = card ? card.getBoundingClientRect().width + 24 : 360;
-    el.scrollBy({ left: dir * step, behavior: "smooth" });
-  };
-
-  const arrow =
-    "inline-flex items-center justify-center w-12 h-12 rounded-full border border-neutral-300 bg-white text-neutral-800 shadow-soft hover:border-primary-500 hover:text-primary-700 transition-colors duration-200 cursor-pointer";
-
-  return (
-    <section className="section-padding bg-gradient-blue-green relative overflow-hidden">
-      <div className="container-custom relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 md:mb-14">
-          <div className="max-w-3xl">
-            <span className="eyebrow">Latest News</span>
-            <motion.h2
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="section-title"
-            >
-              Recent Updates & <span className="text-primary-600">Posts</span>
-            </motion.h2>
-            <p className="text-lg md:text-xl text-neutral-600">
-              Stay updated with our latest achievements, research breakthroughs, and industry insights.
-            </p>
-          </div>
-          <div className="hidden md:flex gap-3 shrink-0">
-            <button type="button" onClick={() => scrollByCard(-1)} aria-label="Previous posts" className={arrow}>
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button type="button" onClick={() => scrollByCard(1)} aria-label="Next posts" className={arrow}>
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div className="container-custom relative z-10">
-        <div
-          ref={scroller}
-          tabIndex={0}
-          aria-label="Recent posts, scroll horizontally"
-          className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-thin"
-        >
-          {posts.map((post, i) => (
-            <motion.article
-              key={i}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: Math.min(i, 4) * 0.06, duration: 0.5 }}
-              className="snap-start shrink-0 w-[85vw] sm:w-96 card-premium p-6 flex flex-col text-left"
-            >
-              <h3 className="text-lg font-bold text-neutral-900 mb-3 leading-snug">
-                {post.title.replace(/^#\s*/, "").trim()}
-              </h3>
-              {post.journal && (
-                <p className="text-sm font-semibold text-primary-700 mb-3">
-                  Publication: {post.journal}
-                </p>
-              )}
-              <p className="text-neutral-600 whitespace-pre-line leading-relaxed">{post.content}</p>
-              {post.image && (
-                <div className="mt-4 h-56 rounded-xl border border-neutral-200 bg-white overflow-hidden">
-                  <img
-                    src={post.image}
-                    alt={`Cover of: ${post.title}`}
-                    loading="lazy"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-              )}
-              {post.link && (
-                <a
-                  href={post.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-auto pt-5 inline-flex items-center gap-1.5 font-semibold text-primary-700 hover:text-secondary-700 transition-colors duration-200 min-h-11"
-                >
-                  Read More <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
-                </a>
-              )}
-            </motion.article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
+const Posts: React.FC = () => (
+  <HorizontalScroller
+    label="Recent posts"
+    perView={2}
+    header={
+      <SectionHeader
+        compact
+        eyebrow="Latest News"
+        title={<>Recent Updates & <span className="text-primary-600">Posts</span></>}
+        lead="Stay updated with our latest achievements, research breakthroughs, and industry insights."
+      />
+    }
+  >
+    {posts.map((post, i) => (
+      <article
+        key={i}
+        data-card
+        className="card-premium snap-start shrink-0 w-[var(--card-w)] p-5 flex flex-col text-left"
+      >
+        <h3 className="text-base font-bold text-neutral-900 mb-2 leading-snug">
+          {post.title.replace(/^#\s*/, "").trim()}
+        </h3>
+        {post.journal && (
+          <p className="text-xs font-semibold text-primary-700 mb-2">Publication: {post.journal}</p>
+        )}
+        <p className="text-sm text-neutral-600 leading-relaxed whitespace-pre-line">
+          {post.content}
+        </p>
+        {post.image && (
+          <a
+            href={post.image}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open full-size cover: ${post.title}`}
+            className="mt-3 h-56 md:h-64 shrink-0 rounded-lg border border-neutral-200 bg-white overflow-hidden block transition-shadow duration-200 hover:shadow-md"
+          >
+            <img
+              src={post.image}
+              alt={`Cover of: ${post.title}`}
+              loading="lazy"
+              width={600}
+              height={256}
+              className="w-full h-full object-contain"
+            />
+          </a>
+        )}
+        {post.link && (
+          <a
+            href={post.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-auto pt-3 inline-flex items-center gap-1 min-h-11 text-sm font-semibold text-primary-700 hover:text-primary-800"
+          >
+            Read More <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+          </a>
+        )}
+      </article>
+    ))}
+  </HorizontalScroller>
+);
 
 export default Posts;

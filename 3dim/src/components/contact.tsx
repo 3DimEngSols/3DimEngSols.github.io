@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Mail, MapPin, MessageCircle, Copy, Check, QrCode, X, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
+import SectionHeader from "./SectionHeader.tsx";
 
 const EMAIL = "3dimengineeringsolutions@gmail.com";
 const CHINA_NUMBER = "+86 13193302925";
@@ -100,11 +101,11 @@ const QrModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 };
 
 const cardBase =
-  "flex flex-col rounded-3xl border border-white/10 bg-white/[0.05] backdrop-blur p-6 md:p-7 min-w-0";
+  "flex flex-col rounded-3xl border border-white/10 bg-white/[0.05] backdrop-blur p-5 min-w-0";
 const iconWrap =
-  "inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-primary-500/15 text-primary-300 mb-5";
+  "inline-flex items-center justify-center w-10 h-10 rounded-xl bg-primary-500/15 text-primary-300 mb-3";
 const primaryBtn =
-  "inline-flex items-center justify-center gap-2 h-11 px-5 rounded-full bg-primary-500 text-neutral-950 text-sm font-semibold hover:bg-primary-400 transition-colors duration-200 cursor-pointer";
+  "inline-flex items-center justify-center gap-2 btn-lift h-11 px-5 rounded-full bg-primary-500 text-neutral-950 text-sm font-semibold hover:bg-primary-400 transition-colors duration-200 cursor-pointer";
 
 const Contact: React.FC = () => {
   const [qrOpen, setQrOpen] = useState(false);
@@ -118,7 +119,6 @@ const Contact: React.FC = () => {
 
   return (
     <section
-      id="contact"
       className="relative isolate overflow-hidden bg-ink text-white section-padding"
     >
       <div className="hero-grid absolute inset-0 -z-10" aria-hidden="true" />
@@ -129,25 +129,20 @@ const Contact: React.FC = () => {
       />
 
       <div className="container-custom">
-        <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
-          <span className="eyebrow !bg-white/5 !border-white/15 !text-primary-300">Get In Touch</span>
-          <motion.h2 {...fade(0)} className="section-title !text-white">
-            Contact <span className="text-primary-400">Us</span>
-          </motion.h2>
-          <motion.p {...fade(1)} className="text-lg md:text-xl text-slate-300">
-            Have questions or want to collaborate? We'd love to hear from you and discuss how we can
-            help bring your ideas to life.
-          </motion.p>
-        </div>
+        <SectionHeader
+          dark
+          title={<>Contact <span className="text-primary-400">Us</span></>}
+          lead="Have questions or want to collaborate? We'd love to hear from you and discuss how we can help bring your ideas to life."
+        />
 
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-5 md:gap-6">
+        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-4">
           {/* Email */}
           <motion.div {...fade(0)} className={cardBase}>
             <span className={iconWrap}>
               <Mail className="w-6 h-6" aria-hidden="true" />
             </span>
-            <h3 className="text-lg font-semibold mb-1">Email</h3>
-            <p className="text-slate-300 break-words mb-6">{EMAIL}</p>
+            <h3 className="text-base font-semibold mb-1">Email</h3>
+            <p className="text-sm text-slate-300 break-words mb-4">{EMAIL}</p>
             <div className="mt-auto flex flex-wrap gap-3">
               <a href={`mailto:${EMAIL}`} className={primaryBtn}>
                 Send email <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
@@ -161,8 +156,8 @@ const Contact: React.FC = () => {
             <span className={iconWrap}>
               <MessageCircle className="w-6 h-6" aria-hidden="true" />
             </span>
-            <h3 className="text-lg font-semibold mb-1">WhatsApp</h3>
-            <p className="text-slate-300 mb-6">{CHINA_NUMBER}</p>
+            <h3 className="text-base font-semibold mb-1">WhatsApp</h3>
+            <p className="text-sm text-slate-300 mb-4">{CHINA_NUMBER}</p>
             <div className="mt-auto flex flex-wrap gap-3">
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={primaryBtn}>
                 Chat on WhatsApp <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
@@ -176,9 +171,9 @@ const Contact: React.FC = () => {
             <span className={iconWrap}>
               <MessageCircle className="w-6 h-6" aria-hidden="true" />
             </span>
-            <h3 className="text-lg font-semibold mb-1">WeChat</h3>
-            <p className="text-slate-300 mb-1">{CHINA_NUMBER}</p>
-            <p className="text-sm text-slate-400 mb-6">
+            <h3 className="text-base font-semibold mb-1">WeChat</h3>
+            <p className="text-sm text-slate-300 mb-1">{CHINA_NUMBER}</p>
+            <p className="text-xs text-slate-400 mb-4">
               Open WeChat, choose Add Contacts, and search this number.
             </p>
             <div className="mt-auto flex flex-wrap gap-3">
@@ -198,8 +193,8 @@ const Contact: React.FC = () => {
             <span className={iconWrap}>
               <MapPin className="w-6 h-6" aria-hidden="true" />
             </span>
-            <h3 className="text-lg font-semibold mb-1">Location</h3>
-            <p className="text-slate-300 mb-6 leading-relaxed">{ADDRESS}</p>
+            <h3 className="text-base font-semibold mb-1">Location</h3>
+            <p className="text-sm text-slate-300 mb-4 leading-relaxed">{ADDRESS}</p>
             <div className="mt-auto">
               <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className={primaryBtn}>
                 Open in Maps <ArrowUpRight className="w-4 h-4" aria-hidden="true" />

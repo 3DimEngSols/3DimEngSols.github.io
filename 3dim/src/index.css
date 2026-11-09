@@ -15,7 +15,8 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    overflow-anchor: none; /* GSAP pin spacers must not trigger browser scroll anchoring */
+    scroll-behavior: auto;
     scroll-padding-top: 5rem;
   }
 
@@ -31,7 +32,6 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
@@ -63,20 +63,20 @@
   
   /* One spacing rule for every section */
   .section-padding {
-    @apply py-14 md:py-20;
+    @apply py-10 md:py-14;
   }
 
   /* Fixed type scale for section headers */
   .section-header {
-    @apply text-center max-w-3xl mx-auto mb-10 md:mb-14;
+    @apply text-center max-w-3xl mx-auto mb-6 md:mb-8;
   }
 
   .section-title {
-    @apply text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-900 mb-4 leading-tight;
+    @apply text-2xl sm:text-3xl md:text-4xl font-bold text-neutral-900 mb-3 leading-tight;
   }
 
   .section-lead {
-    @apply text-lg md:text-xl text-neutral-600 leading-relaxed;
+    @apply text-base md:text-lg text-neutral-600 leading-relaxed;
   }
   
   .container-custom {
@@ -96,7 +96,7 @@
   }
 
   .eyebrow {
-    @apply inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 border border-primary-200 text-xs font-semibold uppercase tracking-widest text-primary-700 mb-6;
+    @apply inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 border border-primary-200 text-xs font-semibold uppercase tracking-widest text-primary-700 mb-4;
   }
 
   .hero-grid {
@@ -107,4 +107,13 @@
     mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
     -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
   }
+}
+
+@layer utilities {
+  .btn-lift {
+    transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease;
+  }
+  .btn-lift:hover { transform: translateY(-2px); }
+  .btn-lift:active { transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) { .btn-lift:hover { transform: none; } }
 }

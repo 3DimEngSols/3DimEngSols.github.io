@@ -1,19 +1,15 @@
 // Services.tsx
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import SectionHeader from "./SectionHeader.tsx";
+import { refreshScroll } from "./HorizontalScroller.tsx";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { categories, services, ServiceCategory } from "../data/services.tsx";
 
-const clamp: React.CSSProperties = {
-  display: "-webkit-box",
-  WebkitLineClamp: 3,
-  WebkitBoxOrient: "vertical",
-  overflow: "hidden",
-};
-
 const Services: React.FC = () => {
   const [active, setActive] = useState<ServiceCategory>("engineering");
+  useEffect(() => refreshScroll(), [active]);
   const visible = services.filter((s) => s.category === active);
 
   const onKey = (e: React.KeyboardEvent, i: number) => {
@@ -26,28 +22,16 @@ const Services: React.FC = () => {
   return (
     <section className="section-padding bg-gradient-professional relative overflow-hidden">
       <div className="container-custom relative z-10">
-        <div className="section-header">
-          <span className="eyebrow">Professional Services</span>
-          <motion.h2
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="section-title"
-          >
-            Our <span className="text-primary-600">Services</span>
-          </motion.h2>
-          <p className="section-lead">
-            Comprehensive engineering solutions tailored to meet your unique challenges and drive
-            innovation.
-          </p>
-        </div>
+        <SectionHeader
+          title={<>Our <span className="text-primary-600">Services</span></>}
+          lead="Comprehensive engineering solutions tailored to meet your unique challenges and drive innovation."
+        />
 
         {/* Category tabs */}
         <div
           role="tablist"
           aria-label="Service categories"
-          className="flex flex-wrap justify-center gap-2 mb-8 md:mb-10"
+          className="flex flex-wrap justify-center gap-2 mb-5 md:mb-6"
         >
           {categories.map((c, i) => {
             const on = c.id === active;
@@ -91,18 +75,18 @@ const Services: React.FC = () => {
               >
                 <Link
                   to={`/services/${service.slug}`}
-                  className="card-premium group flex flex-col h-full p-6 md:p-7"
+                  className="card-premium group flex flex-col h-full p-5"
                 >
-                  <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-primary-50 text-primary-600 mb-5 group-hover:bg-primary-100 transition-colors duration-200">
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-primary-50 text-primary-600 mb-3 group-hover:bg-primary-100 transition-colors duration-200">
                     <Icon className="w-6 h-6" aria-hidden="true" />
                   </span>
-                  <h3 className="text-xl font-bold text-neutral-900 mb-3 leading-snug">
+                  <h3 className="text-lg font-bold text-neutral-900 mb-2 leading-snug">
                     {service.title}
                   </h3>
-                  <p className="text-neutral-600 leading-relaxed" style={clamp}>
+                  <p className="text-sm text-neutral-600 leading-relaxed">
                     {service.description}
                   </p>
-                  <span className="mt-auto pt-5 inline-flex items-center gap-1.5 font-semibold text-primary-700 min-h-11">
+                  <span className="mt-auto pt-3 inline-flex items-center gap-1.5 font-semibold text-primary-700 min-h-11">
                     Learn more
                     <ArrowRight
                       className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"

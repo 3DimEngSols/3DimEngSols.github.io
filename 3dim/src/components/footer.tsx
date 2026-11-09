@@ -10,16 +10,13 @@ const Footer: React.FC = () => {
   return (
     <footer className="relative isolate overflow-hidden bg-ink text-slate-300">
       <div className="hero-grid absolute inset-0 -z-10 opacity-60" aria-hidden="true" />
-      <div className="container-custom pt-14 pb-8">
-        <div className="grid gap-10 md:grid-cols-[1.3fr_1fr_1.4fr]">
+      <div className="container-custom pt-8 pb-5">
+        <div className="grid gap-6 md:gap-8 md:grid-cols-[1.3fr_1fr_1.4fr]">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center">
-                <span className="text-white font-bold text-sm">3D</span>
-              </div>
-              <span className="text-xl font-bold text-white">3Dim Engineering Solutions</span>
-            </div>
+            <span className="inline-block rounded-lg bg-white px-3 py-2 mb-3">
+              <img src="/Images/logo2.png" alt="3Dim Engineering Solutions" width={500} height={172} className="h-10 w-auto" />
+            </span>
             <p className="text-slate-400 leading-relaxed max-w-sm">
               Leading engineering excellence through innovation and precision, with global solutions
               from Xi'an, China.
@@ -80,7 +77,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between text-sm text-slate-500">
+        <div className="mt-6 pt-4 border-t border-white/10 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between text-sm text-slate-500">
           <p>© {new Date().getFullYear()} 3Dim Engineering Solutions. All rights reserved.</p>
           <p>Xi'an, Shaanxi, P.R. China · Engineering, AI & Research</p>
         </div>

@@ -4,6 +4,7 @@ import HomePage from "./pages/Home.tsx";
 import AboutPage from "./pages/AboutPage.tsx";
 import DigitalTools from "./pages/tools.tsx";
 import ServicePage from "./pages/ServicePage.tsx";
+import { scrollToSection } from "./components/useSectionNav.ts";
 
 // Scroll to the #section on navigation, or to the top of a new page
 function ScrollManager() {
@@ -11,8 +12,8 @@ function ScrollManager() {
   useEffect(() => {
     if (hash) {
       const t = setTimeout(
-        () => document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: "smooth" }),
-        100
+        () => scrollToSection(hash.slice(1)),
+        150
       );
       return () => clearTimeout(t);
     }
