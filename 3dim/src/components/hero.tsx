@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, MessageCircle } from "lucide-react";
 
 const Hero: React.FC = () => (
-  <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-green-50 pt-[4.5rem] pb-7 md:pt-20 md:pb-9 text-center">
+  <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-green-50 pt-[4.5rem] pb-4 md:pt-20 md:pb-5 text-center">
     <div className="container-custom relative z-10">
       <motion.img
         src="/Images/logo2.png"

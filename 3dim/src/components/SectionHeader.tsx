@@ -7,10 +7,14 @@ interface Props {
   lead?: string;
   dark?: boolean;
   compact?: boolean;
+  /** Show the eyebrow label even in compact mode. */
+  keepEyebrow?: boolean;
+  /** Hide the lead on short screens (pinned sections only, so the cards fit). */
+  hideLeadOnShort?: boolean;
 }
 
 /** Staggered reveal: eyebrow, then title, then lead. */
-const SectionHeader: React.FC<Props> = ({ eyebrow, title, lead, dark, compact }) => {
+const SectionHeader: React.FC<Props> = ({ eyebrow, title, lead, dark, compact, keepEyebrow, hideLeadOnShort }) => {
   const reduce = useReducedMotion();
   const item = (i: number) =>
     reduce
@@ -23,7 +27,7 @@ const SectionHeader: React.FC<Props> = ({ eyebrow, title, lead, dark, compact })
         };
   return (
     <div className={compact ? "text-center max-w-3xl mx-auto mb-4 [@media(max-height:720px)]:mb-3" : "section-header"}>
-      {eyebrow && !compact && (
+      {eyebrow && (!compact || keepEyebrow) && (
         <motion.span
           {...item(0)}
           className={`eyebrow ${dark ? "!bg-white/5 !border-white/15 !text-primary-300" : ""}`}
@@ -35,7 +39,7 @@ const SectionHeader: React.FC<Props> = ({ eyebrow, title, lead, dark, compact })
         {title}
       </motion.h2>
       {lead && (
-        <motion.p {...item(2)} className={`section-lead ${compact ? "!text-sm md:!text-base [@media(max-height:720px)]:hidden" : ""} ${dark ? "!text-slate-300" : ""}`}>
+        <motion.p {...item(2)} className={`section-lead ${compact ? "!text-sm md:!text-base" : ""} ${hideLeadOnShort ? "[@media(max-height:720px)]:hidden" : ""} ${dark ? "!text-slate-300" : ""}`}>
           {lead}
         </motion.p>
       )}

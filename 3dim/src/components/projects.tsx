@@ -91,6 +91,7 @@ const Projects: React.FC = () => (
     header={
       <SectionHeader
         compact
+        hideLeadOnShort
         eyebrow="Research Excellence"
         title={<>Research & <span className="text-primary-600">Projects</span></>}
         lead="Cutting-edge research and innovative projects that push the boundaries of engineering excellence."

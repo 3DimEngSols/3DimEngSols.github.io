@@ -133,6 +133,7 @@ const Posts: React.FC = () => (
     header={
       <SectionHeader
         compact
+        hideLeadOnShort
         eyebrow="Latest News"
         title={<>Recent Updates & <span className="text-primary-600">Posts</span></>}
         lead="Stay updated with our latest achievements, research breakthroughs, and industry insights."
