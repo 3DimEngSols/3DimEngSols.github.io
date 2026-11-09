@@ -266,26 +266,28 @@ const DigitalTools: React.FC = () => {
             })}
           </div>
 
-          <ul className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 list-none p-0 m-0">
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 list-none p-0 m-0">
             {visible.map((tool) => (
               <li
                 key={tool.name}
-                className="group flex items-center gap-3 rounded-xl border border-neutral-200 bg-white p-3 shadow-sm transition-all duration-200 hover:border-primary-300 hover:shadow-md"
+                className="group flex flex-col rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-primary-300 hover:shadow-md"
               >
-                <span className="inline-flex items-center justify-center w-11 h-11 shrink-0 rounded-xl bg-neutral-100 [&>svg]:w-6 [&>svg]:h-6">
-                  {tool.icon}
-                </span>
-                <div className="min-w-0 flex-1">
-                  <h3 className="text-sm font-bold text-ink leading-snug">{tool.name}</h3>
-                  <p className="text-xs text-neutral-500">{tool.category}</p>
+                <div className="flex items-center gap-4 mb-5">
+                  <span className="inline-flex items-center justify-center w-14 h-14 shrink-0 rounded-2xl bg-neutral-50 border border-neutral-200 [&>svg]:w-7 [&>svg]:h-7">
+                    {tool.icon}
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="text-lg font-bold text-ink leading-snug">{tool.name}</h3>
+                    <p className="mt-0.5 text-sm text-neutral-500">{tool.category}</p>
+                  </div>
                 </div>
                 <button
                   type="button"
                   onClick={() => setSelected(tool)}
                   aria-label={`Buy ${tool.name}`}
-                  className="btn-lift shrink-0 inline-flex items-center gap-1 h-9 px-3.5 rounded-full bg-primary-600 text-white text-xs font-semibold hover:bg-primary-700 cursor-pointer"
+                  className="btn-lift mt-auto inline-flex items-center justify-center gap-2 h-11 w-full rounded-xl bg-primary-600 text-white text-sm font-semibold hover:bg-primary-700 cursor-pointer"
                 >
-                  Buy <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
+                  Buy Now <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                 </button>
               </li>
             ))}

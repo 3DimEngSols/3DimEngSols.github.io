@@ -1,55 +1,39 @@
-const Mission: React.FC = () => {
-  return (
-    <section className="section-padding bg-gradient-blue-green relative overflow-hidden">
-      {/* Background decoration */}
-      
-      <div className="container-custom relative z-10">
-        <div className="section-header">
-          <div className="eyebrow">
-            <span>🎯 Our Mission</span>
-          </div>
-          
-          <h2 className="section-title">
-            Our <span className="text-primary-600">Mission</span>
-          </h2>
-          <p className="max-w-4xl mx-auto text-xl text-neutral-600 leading-relaxed">
-            Our aim is to empower clients to achieve their goals by providing
-            innovative, comprehensive, and tailored engineering solutions. We strive
-            to build long-lasting relationships through our collaborative approach,
-            technical expertise, and commitment to quality and excellence.
-          </p>
-        </div>
+import { Quote } from "lucide-react";
+import SectionHeader from "../SectionHeader.tsx";
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          <div className="card-premium p-8 hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden">
-            {/* Background gradient on hover */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-50/50 to-secondary-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            
-            <div className="relative z-10">
-              <h3 className="text-xl font-bold text-neutral-900 mb-4 group-hover:text-primary-600 transition-all duration-300">Engr. Ahmed Waqar Rao</h3>
-              <p className="text-neutral-600 leading-relaxed group-hover:text-neutral-700 transition-colors duration-300">
-                "My goal is to pioneer sustainable engineering solutions that drive
-                progress and create a lasting positive impact on the world."
-              </p>
-            </div>
-          </div>
-          <div className="card-premium p-8 hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden">
-            {/* Background gradient on hover */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-50/50 to-secondary-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            
-            <div className="relative z-10">
-              <h3 className="text-xl font-bold text-neutral-900 mb-4 group-hover:text-primary-600 transition-all duration-300">Engr. Qasim Bin Habib</h3>
-              <p className="text-neutral-600 leading-relaxed group-hover:text-neutral-700 transition-colors duration-300">
-                "I aspire to build a team dedicated to work for innovative and
-                sustainable engineering solutions that transform industries and
-                shape the future of engineering."
-              </p>
-            </div>
-          </div>
-        </div>
+const quotes = [
+  {
+    name: "Engr. Ahmed Waqar Rao",
+    text: "My goal is to pioneer sustainable engineering solutions that drive progress and create a lasting positive impact on the world.",
+  },
+  {
+    name: "Engr. Qasim Bin Habib",
+    text: "I aspire to build a team dedicated to work for innovative and sustainable engineering solutions that transform industries and shape the future of engineering.",
+  },
+];
+
+const Mission: React.FC = () => (
+  <section className="section-padding bg-neutral-50">
+    <div className="container-custom">
+      <SectionHeader
+        eyebrow="Our Mission"
+        title={<>Our <span className="text-primary-600">Mission</span></>}
+        lead="Our aim is to empower clients to achieve their goals by providing innovative, comprehensive, and tailored engineering solutions. We strive to build long-lasting relationships through our collaborative approach, technical expertise, and commitment to quality and excellence."
+      />
+      <div className="grid md:grid-cols-2 gap-4 md:gap-5 max-w-5xl mx-auto">
+        {quotes.map((q) => (
+          <figure
+            key={q.name}
+            className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm"
+          >
+            <Quote className="w-7 h-7 text-primary-500 mb-3" aria-hidden="true" />
+            <blockquote className="text-base text-neutral-700 leading-relaxed">"{q.text}"</blockquote>
+            <figcaption className="mt-4 text-sm font-bold text-ink">{q.name}</figcaption>
+          </figure>
+        ))}
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default Mission;

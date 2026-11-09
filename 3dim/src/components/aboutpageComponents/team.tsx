@@ -1,4 +1,6 @@
 // src/components/aboutpageComponents/Team.tsx
+import SectionHeader from "../SectionHeader.tsx";
+import { ChevronDown } from "lucide-react";
 import React, { useState } from "react";
 
 interface TeamMember {
@@ -92,134 +94,93 @@ of developing efficient energy conversion systems for sustainable technologies.`
 ];
 
 const Team: React.FC = () => {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-
-  const toggleExpand = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
-  };
+  const [expanded, setExpanded] = useState<string | null>(null);
+  const toggle = (name: string) => setExpanded(expanded === name ? null : name);
 
   const founders = teamMembers.filter((m) => m.isFounder);
   const others = teamMembers.filter((m) => !m.isFounder);
 
+  const BioToggle = ({ name }: { name: string }) => (
+    <button
+      type="button"
+      onClick={() => toggle(name)}
+      aria-expanded={expanded === name}
+      className="inline-flex items-center gap-1 min-h-11 text-sm font-semibold text-primary-700 hover:text-primary-800 cursor-pointer"
+    >
+      {expanded === name ? "Hide bio" : "Read bio"}
+      <ChevronDown
+        className={`w-4 h-4 transition-transform duration-200 ${expanded === name ? "rotate-180" : ""}`}
+        aria-hidden="true"
+      />
+    </button>
+  );
+
+  const Bio = ({ member }: { member: (typeof teamMembers)[number] }) =>
+    expanded === member.name ? (
+      <p className="mt-1 text-sm text-neutral-600 leading-relaxed whitespace-pre-line">{member.bio}</p>
+    ) : null;
+
   return (
-    <section className="section-padding bg-gradient-professional relative overflow-hidden">
-      {/* Background decoration */}
-      
-      <div className="container-custom relative z-10">
-        {/* Section Heading */}
-        <div className="text-center mb-16 mt-10">
-          <div className="eyebrow">
-            <span>👥 Meet Our Team</span>
-          </div>
-          
-          <h2 className="section-title">
-            Meet Our <span className="text-primary-600">Core Team</span>
-          </h2>
-          <p className="max-w-4xl mx-auto text-lg md:text-xl text-neutral-600 leading-relaxed">
-            A multidisciplinary team driving innovation across AI, mechanical design,
-            civil engineering, power systems, and full-stack development.
-            Together, we've delivered 100+ successful projects worldwide.
-          </p>
-        </div>
+    <section className="pt-20 md:pt-24 pb-10 md:pb-14 bg-white">
+      <div className="container-custom">
+        <SectionHeader
+          eyebrow="Meet Our Team"
+          title={<>Meet Our <span className="text-primary-600">Core Team</span></>}
+          lead="A multidisciplinary team driving innovation across AI, mechanical design, civil engineering, power systems, and full-stack development. Together, we've delivered 100+ successful projects worldwide."
+        />
 
-        {/* Founders Section */}
-        <div className="mb-20">
-          <h3 className="text-2xl font-semibold text-center text-primary-600 mb-10 border-b-2 border-secondary-600 pb-2 inline-block">
-            Our Founders
-          </h3>
-          <div className="grid md:grid-cols-2 gap-10">
-            {founders.map((member, i) => (
-              <div
-                key={i}
-                className="relative card-premium p-8 hover:shadow-xl transition-all duration-300 group overflow-hidden"
-              >
-                {/* Background gradient on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-50/50 to-secondary-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative z-10 flex flex-col items-center text-center">
-                  <img
-                    loading="lazy"
-                    src={member.image}
-                    alt={member.name}
-                    className="w-36 h-36 rounded-full object-cover border-4 border-secondary-500 shadow-md mb-6 group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <h3 className="text-2xl font-bold text-neutral-900 mb-2 group-hover:text-primary-600 transition-all duration-300">
-                    {member.name}
-                  </h3>
-                  <p className="text-primary-600 font-medium mb-4">
-                    {member.role}
-                  </p>
-                  <button
-                    onClick={() => toggleExpand(i)}
-                    aria-expanded={expandedIndex === i}
-                    className="inline-flex items-center justify-center min-h-11 px-4 text-sm text-primary-700 hover:text-secondary-700 font-semibold transition-colors mb-2 cursor-pointer"
-                  >
-                    {expandedIndex === i ? "Hide Bio ▲" : "Read Bio ▼"}
-                  </button>
-                  <div
-                    className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                      expandedIndex === i ? "max-h-96" : "max-h-0"
-                    }`}
-                  >
-                    <p className="text-neutral-700 text-sm leading-relaxed whitespace-pre-line">
-                      {member.bio}
-                    </p>
-                  </div>
+        <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 mb-4">Our Founders</h3>
+        <div className="grid md:grid-cols-2 gap-4 md:gap-5 mb-10 items-start">
+          {founders.map((member) => (
+            <article
+              key={member.name}
+              className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm transition-shadow duration-200 hover:shadow-md"
+            >
+              <div className="flex items-center gap-4">
+                <img
+                  loading="lazy"
+                  src={member.image}
+                  alt={member.name}
+                  width={112}
+                  height={112}
+                  className="w-24 h-24 md:w-28 md:h-28 shrink-0 rounded-2xl object-cover border border-neutral-200"
+                />
+                <div className="min-w-0">
+                  <h4 className="text-xl font-bold text-ink leading-tight">{member.name}</h4>
+                  <p className="mt-1 text-sm font-medium text-primary-700">{member.role}</p>
+                  <BioToggle name={member.name} />
                 </div>
               </div>
-            ))}
-          </div>
+              <Bio member={member} />
+            </article>
+          ))}
         </div>
 
-        {/* Rest of Team */}
-        <div>
-          <h3 className="text-2xl font-semibold text-center text-primary-600 mb-10 border-b-2 border-secondary-600 pb-2 inline-block">
-            Our Team
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {others.map((member, i) => (
-              <div
-                key={i}
-                className="card p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden"
-              >
-                {/* Background gradient on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 to-secondary-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative z-10 flex flex-col items-center text-center">
-                  <img
-                    loading="lazy"
-                    src={member.image}
-                    alt={member.name}
-                    className="w-28 h-28 rounded-full object-cover border-2 border-secondary-300 shadow mb-4 group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <h3 className="text-lg font-bold text-neutral-900 mb-1 group-hover:text-primary-600 transition-all duration-300">
-                    {member.name}
-                  </h3>
-                  <p className="text-primary-600 text-sm font-medium mb-3">
-                    {member.role}
-                  </p>
-                  <button
-                    onClick={() => toggleExpand(i + founders.length)}
-                    aria-expanded={expandedIndex === i + founders.length}
-                    className="inline-flex items-center justify-center min-h-11 px-4 text-sm text-primary-700 hover:text-secondary-700 font-semibold transition-colors mb-1 cursor-pointer"
-                  >
-                    {expandedIndex === i + founders.length
-                      ? "Hide Bio ▲"
-                      : "Read Bio ▼"}
-                  </button>
-                  <div
-                    className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                      expandedIndex === i + founders.length
-                        ? "max-h-[32rem]"
-                        : "max-h-0"
-                    }`}
-                  >
-                    <p className="text-neutral-600 text-sm leading-relaxed whitespace-pre-line">
-                      {member.bio}
-                    </p>
-                  </div>
+        <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 mb-4">Our Team</h3>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
+          {others.map((member) => (
+            <article
+              key={member.name}
+              className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm transition-shadow duration-200 hover:shadow-md"
+            >
+              <div className="flex items-center gap-3">
+                <img
+                  loading="lazy"
+                  src={member.image}
+                  alt={member.name}
+                  width={72}
+                  height={72}
+                  className="w-16 h-16 shrink-0 rounded-xl object-cover border border-neutral-200"
+                />
+                <div className="min-w-0">
+                  <h4 className="text-base font-bold text-ink leading-tight">{member.name}</h4>
+                  <p className="mt-0.5 text-xs font-medium text-primary-700 leading-snug">{member.role}</p>
                 </div>
               </div>
-            ))}
-          </div>
+              <BioToggle name={member.name} />
+              <Bio member={member} />
+            </article>
+          ))}
         </div>
       </div>
     </section>
