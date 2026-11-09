@@ -128,7 +128,8 @@ link:'https://www.linkedin.com/posts/3dim-engineering-solutions_title-optimizing
 const Posts: React.FC = () => (
   <HorizontalScroller
     label="Recent posts"
-    perView={2}
+    perView={1.5}
+    minHeight="md:min-h-[clamp(360px,calc(100svh-230px),560px)]"
     header={
       <SectionHeader
         compact
@@ -142,41 +143,46 @@ const Posts: React.FC = () => (
       <article
         key={i}
         data-card
-        className="card-premium snap-start shrink-0 w-[var(--card-w)] p-5 flex flex-col text-left"
+        className="card-premium snap-start shrink-0 w-[var(--card-w)] p-5 md:p-4 lg:p-5 flex flex-col text-left"
       >
-        <h3 className="text-base font-bold text-neutral-900 mb-2 leading-snug">
-          {post.title.replace(/^#\s*/, "").trim()}
-        </h3>
-        {post.journal && (
-          <p className="text-xs font-semibold text-primary-700 mb-2">Publication: {post.journal}</p>
-        )}
-        <p className="text-sm text-neutral-600 leading-relaxed whitespace-pre-line">
-          {post.content}
-        </p>
-        {post.image && (
-          <a
-            href={post.image}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Open full-size cover: ${post.title}`}
-            className="mt-3 h-56 md:h-64 shrink-0 rounded-lg border border-neutral-200 bg-white overflow-hidden block transition-shadow duration-200 hover:shadow-md"
-          >
-            <img
-              src={post.image}
-              alt={`Cover of: ${post.title}`}
-              loading="lazy"
-              width={600}
-              height={256}
-              className="w-full h-full object-contain"
-            />
-          </a>
-        )}
+        {/* Cards with a paper cover: text beside the image on tablet/desktop, so the card stays short */}
+        <div className={post.image ? "md:grid md:grid-cols-[1fr_1.05fr] md:gap-5 flex-1" : "flex-1"}>
+          <div>
+            <h3 className="text-base md:text-[15px] font-bold text-neutral-900 mb-1.5 leading-snug">
+              {post.title.replace(/^#\s*/, "").trim()}
+            </h3>
+            {post.journal && (
+              <p className="text-xs font-semibold text-primary-700 mb-1.5">Publication: {post.journal}</p>
+            )}
+            <p className="text-sm md:text-[13.5px] md:leading-[1.55] text-neutral-600 leading-relaxed whitespace-pre-line">
+              {post.content}
+            </p>
+          </div>
+          {post.image && (
+            <a
+              href={post.image}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Open full-size cover: ${post.title}`}
+              className="mt-3 md:mt-0 h-56 md:h-auto md:min-h-[260px] block rounded-lg border border-neutral-200 bg-white overflow-hidden transition-shadow duration-200 hover:shadow-md"
+            >
+              <img
+                src={post.image}
+                alt={`Cover of: ${post.title}`}
+                loading="lazy"
+                width={600}
+                height={256}
+                className="w-full h-full object-contain"
+              />
+            </a>
+          )}
+        </div>
         {post.link && (
           <a
             href={post.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-auto pt-3 inline-flex items-center gap-1 min-h-11 text-sm font-semibold text-primary-700 hover:text-primary-800"
+            className="mt-2 inline-flex items-center gap-1 min-h-11 md:min-h-8 text-sm font-semibold text-primary-700 hover:text-primary-800"
           >
             Read More <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
           </a>

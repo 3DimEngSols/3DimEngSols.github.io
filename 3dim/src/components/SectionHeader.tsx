@@ -22,7 +22,7 @@ const SectionHeader: React.FC<Props> = ({ eyebrow, title, lead, dark, compact })
           transition: { delay: i * 0.1, duration: 0.45, ease: "easeOut" as const },
         };
   return (
-    <div className={compact ? "text-center max-w-3xl mx-auto mb-4" : "section-header"}>
+    <div className={compact ? "text-center max-w-3xl mx-auto mb-4 [@media(max-height:720px)]:mb-3" : "section-header"}>
       {eyebrow && !compact && (
         <motion.span
           {...item(0)}
@@ -35,7 +35,7 @@ const SectionHeader: React.FC<Props> = ({ eyebrow, title, lead, dark, compact })
         {title}
       </motion.h2>
       {lead && (
-        <motion.p {...item(2)} className={`section-lead ${compact ? "!text-sm md:!text-base" : ""} ${dark ? "!text-slate-300" : ""}`}>
+        <motion.p {...item(2)} className={`section-lead ${compact ? "!text-sm md:!text-base [@media(max-height:720px)]:hidden" : ""} ${dark ? "!text-slate-300" : ""}`}>
           {lead}
         </motion.p>
       )}
