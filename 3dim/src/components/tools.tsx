@@ -113,7 +113,7 @@ const Tools: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6"
           >
-            Our <span className="text-primary-600 border-b-4 border-secondary-600 pb-2">Tools & Technologies</span>
+            Our <span className="text-primary-600">Tools & Technologies</span>
           </motion.h2>
           <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
             A wide range of engineering, AI, and software tools we use to deliver innovative solutions.
@@ -128,8 +128,7 @@ const Tools: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.02, duration: 0.6 }}
-              whileHover={{ scale: 1.05 }}
-              className="card-premium p-6 flex flex-col items-center text-center group"
+                            className="card-premium p-6 flex flex-col items-center text-center group"
             >
               <div className="mb-4">{tool.icon}</div>
               <h3 className="text-lg font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors duration-300">

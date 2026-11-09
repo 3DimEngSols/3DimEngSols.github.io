@@ -85,18 +85,16 @@ const Projects: React.FC = () => {
   return (
     <section id="projects" className="section-padding bg-gradient-blue-green relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-20 right-20 w-32 h-32 bg-secondary-100 rounded-full blur-3xl opacity-30 animate-pulse" />
-      <div className="absolute bottom-20 left-20 w-48 h-48 bg-primary-100 rounded-full blur-3xl opacity-20 animate-pulse" />
 
       <div className="container-custom relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-block px-6 py-3 bg-gradient-to-r from-primary-100 to-secondary-100 rounded-full border border-primary-200/50 mb-6">
-            <span className="text-sm font-semibold text-gradient">🔬 Research Excellence</span>
+          <div className="eyebrow">
+            <span>Research Excellence</span>
           </div>
           
           <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
-            Research & <span className="text-primary-600 border-b-4 border-secondary-600 pb-2">Projects</span>
+            Research & <span className="text-primary-600">Projects</span>
           </h2>
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
             Cutting-edge research and innovative projects that push the boundaries of engineering excellence.
@@ -108,7 +106,7 @@ const Projects: React.FC = () => {
           {projects.map((proj, i) => (
             <div
               key={i}
-              className="group card-premium p-8 relative transition-all duration-500 hover:-translate-y-2 hover:rotate-1 overflow-hidden"
+              className="group card-premium p-8 relative transition-all duration-500  overflow-hidden"
             >
               {/* Background gradient on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 to-secondary-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -135,7 +133,7 @@ const Projects: React.FC = () => {
                     href={proj.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center font-medium text-primary-600 hover:text-secondary-600 transition-all relative group/link"
+                    className="inline-flex items-center min-h-11 font-semibold text-primary-700 hover:text-secondary-700 transition-colors relative group/link"
                   >
                     Read More →
                     <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-secondary-600 group-hover/link:w-full transition-all duration-300"></span>

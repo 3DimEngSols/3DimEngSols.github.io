@@ -118,9 +118,6 @@ const Services: React.FC = () => {
   return (
     <section className="section-padding bg-gradient-professional relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-10 left-10 w-40 h-40 bg-primary-100 rounded-full blur-3xl opacity-40 animate-pulse" />
-      <div className="absolute bottom-10 right-10 w-60 h-60 bg-secondary-100 rounded-full blur-3xl opacity-30 animate-pulse" />
-      <div className="absolute top-1/2 left-1/4 w-32 h-32 bg-gradient-to-r from-primary-200 to-secondary-200 rounded-full blur-2xl opacity-20 animate-float" />
 
       <div className="container-custom relative z-10">
         <div className="text-center mb-16">
@@ -131,8 +128,8 @@ const Services: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="mb-6"
           >
-            <div className="inline-block px-6 py-3 bg-gradient-to-r from-primary-100 to-secondary-100 rounded-full border border-primary-200/50 mb-6">
-              <span className="text-sm font-semibold text-gradient">⚡ Professional Services</span>
+            <div className="eyebrow">
+              <span>Professional Services</span>
             </div>
           </motion.div>
 
@@ -143,7 +140,7 @@ const Services: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6"
           >
-            Our <span className="text-primary-600 border-b-4 border-secondary-600 pb-2">Services</span>
+            Our <span className="text-primary-600">Services</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -165,8 +162,7 @@ const Services: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05, duration: 0.6 }}
-              whileHover={{ scale: 1.05, rotateY: 5 }}
-              className="card-premium p-8 group relative overflow-hidden"
+                            className="card-premium p-8 group relative overflow-hidden"
             >
               {/* Background gradient on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary-50/50 to-secondary-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

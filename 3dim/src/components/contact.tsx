@@ -1,148 +1,215 @@
-import { Mail, MapPin, MessageCircle } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import { Mail, MapPin, MessageCircle, Copy, Check, QrCode, X, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 
-const contactInfo = [
-  {
-    icon: <Mail className="w-8 h-8 text-primary-600" />,
-    title: "Email",
-    value: "3dimengineeringsolutions@gmail.com",
-    color: "primary",
-    link: "mailto:3dimengineeringsolutions@gmail.com",
-  },
-  {
-    icon: <MessageCircle className="w-8 h-8 text-green-600" />,
-    title: "WeChat",
-    value: "+86 13193302925", // show number
-    color: "primary",
-    qr: "/Images/WeChat.jpeg", // show QR code image
-  },
-  {
-    icon: <MessageCircle className="w-8 h-8 text-green-600" />,
-    title: "WhatsApp",
-    value: "+86 13193302925",
-    color: "secondary",
-    link: "https://wa.me/8613193302925",
-  },
+const EMAIL = "3dimengineeringsolutions@gmail.com";
+const CHINA_NUMBER = "+86 13193302925";
+const CHINA_DIGITS = "8613193302925";
+const WECHAT_QR = "/Images/WeChat.jpeg";
+const ADDRESS =
+  "E Building, 12th Floor, Chamba District, Free Trade Center, Xi'an, Shaanxi Province, 710072, P.R. China";
+const WHATSAPP_URL = `https://wa.me/${CHINA_DIGITS}?text=${encodeURIComponent(
+  "Hello 3Dim Engineering Solutions, I'd like to discuss a project."
+)}`;
+const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  "Free Trade Center, Chamba District, Xi'an, Shaanxi, China"
+)}`;
 
-  {
-    icon: <MapPin className="w-8 h-8 text-primary-600" />,
-    title: "Location",
-    value:
-      "E Building, 12th Floor, Chamba District, Free Trade Center, Xi'an, Shaanxi Province, 710072, P.R. China",
-    color: "primary",
-  },
-  
-  
-];
+/** Copy-to-clipboard button with visible + announced feedback. */
+const CopyButton: React.FC<{ text: string; label: string }> = ({ text, label }) => {
+  const [copied, setCopied] = useState(false);
+
+  const copy = () => {
+    const fallback = () => {
+      const el = document.createElement("textarea");
+      el.value = text;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand("copy");
+      document.body.removeChild(el);
+    };
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(text).catch(fallback);
+    } else {
+      fallback();
+    }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={copy}
+      className="inline-flex items-center justify-center gap-2 h-11 px-4 rounded-full border border-white/20 text-sm font-semibold text-white hover:bg-white/10 transition-colors duration-200 cursor-pointer"
+    >
+      {copied ? <Check className="w-4 h-4 text-primary-300" /> : <Copy className="w-4 h-4" />}
+      <span aria-live="polite">{copied ? "Copied" : label}</span>
+    </button>
+  );
+};
+
+const QrModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
+  const closeRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    closeRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [onClose]);
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="WeChat QR code"
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-sm rounded-3xl bg-white p-5 shadow-2xl"
+      >
+        <button
+          ref={closeRef}
+          onClick={onClose}
+          aria-label="Close QR code"
+          className="absolute top-3 right-3 inline-flex items-center justify-center w-11 h-11 rounded-full text-neutral-600 hover:bg-neutral-100 cursor-pointer"
+        >
+          <X className="w-5 h-5" />
+        </button>
+        <h3 className="text-lg font-bold text-neutral-900 pr-10 mb-3">Add us on WeChat</h3>
+        <img
+          src={WECHAT_QR}
+          alt="WeChat QR code for 3Dim Engineering Solutions"
+          className="w-full h-auto max-h-[60vh] object-contain rounded-xl border border-neutral-200"
+        />
+        <p className="mt-3 text-sm text-neutral-600">
+          Can't scan it? Open WeChat, choose Add Contacts, and search for{" "}
+          <span className="font-semibold text-neutral-900">{CHINA_NUMBER}</span>.
+        </p>
+      </div>
+    </div>
+  );
+};
+
+const cardBase =
+  "flex flex-col rounded-3xl border border-white/10 bg-white/[0.05] backdrop-blur p-6 md:p-7 min-w-0";
+const iconWrap =
+  "inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-primary-500/15 text-primary-300 mb-5";
+const primaryBtn =
+  "inline-flex items-center justify-center gap-2 h-11 px-5 rounded-full bg-primary-500 text-neutral-950 text-sm font-semibold hover:bg-primary-400 transition-colors duration-200 cursor-pointer";
 
 const Contact: React.FC = () => {
+  const [qrOpen, setQrOpen] = useState(false);
+
+  const fade = (i: number) => ({
+    initial: { opacity: 0, y: 24 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { delay: i * 0.08, duration: 0.5 },
+  });
+
   return (
     <section
       id="contact"
-      className="section-padding bg-gradient-professional relative overflow-hidden"
+      className="relative isolate overflow-hidden bg-[#0a1020] text-white section-padding"
     >
-      {/* Background decoration */}
-      <div className="absolute top-10 right-10 w-40 h-40 bg-primary-100 rounded-full blur-3xl opacity-40 animate-pulse" />
-      <div className="absolute bottom-10 left-10 w-60 h-60 bg-secondary-100 rounded-full blur-3xl opacity-30 animate-pulse" />
+      <div className="hero-grid absolute inset-0 -z-10" aria-hidden="true" />
+      <div
+        className="absolute -z-10 -top-32 right-0 w-[480px] h-[480px] rounded-full opacity-25 blur-3xl"
+        style={{ background: "radial-gradient(circle, #2563eb, transparent 70%)" }}
+        aria-hidden="true"
+      />
 
-      <div className="container-custom relative z-10">
-        <div className="text-center mb-16">
-          <div className="inline-block px-6 py-3 bg-gradient-to-r from-primary-100 to-secondary-100 rounded-full border border-primary-200/50 mb-6">
-            <span className="text-sm font-semibold text-gradient">
-              📞 Get In Touch
-            </span>
-          </div>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6"
-          >
-            Contact{" "}
-            <span className="text-primary-600 border-b-4 border-secondary-600 pb-2">
-              Us
-            </span>
+      <div className="container-custom">
+        <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
+          <span className="eyebrow !bg-white/5 !border-white/15 !text-primary-300">Get In Touch</span>
+          <motion.h2 {...fade(0)} className="text-4xl md:text-5xl font-bold mb-5">
+            Contact <span className="text-primary-400">Us</span>
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.7 }}
-            className="text-xl text-neutral-600 max-w-3xl mx-auto"
-          >
-            Have questions or want to collaborate? We'd love to hear from you
-            and discuss how we can help bring your ideas to life.
+          <motion.p {...fade(1)} className="text-lg md:text-xl text-slate-300">
+            Have questions or want to collaborate? We'd love to hear from you and discuss how we can
+            help bring your ideas to life.
           </motion.p>
         </div>
 
-        <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
-          {contactInfo.map((info, i) => {
-            const Wrapper = info.link ? motion.a : motion.div;
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-5 md:gap-6">
+          {/* Email */}
+          <motion.div {...fade(0)} className={cardBase}>
+            <span className={iconWrap}>
+              <Mail className="w-6 h-6" aria-hidden="true" />
+            </span>
+            <h3 className="text-lg font-semibold mb-1">Email</h3>
+            <p className="text-slate-300 break-words mb-6">{EMAIL}</p>
+            <div className="mt-auto flex flex-wrap gap-3">
+              <a href={`mailto:${EMAIL}`} className={primaryBtn}>
+                Send email <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+              </a>
+              <CopyButton text={EMAIL} label="Copy address" />
+            </div>
+          </motion.div>
 
-            return (
-              <Wrapper
-                key={i}
-                href={info.link || undefined}
-                target={info.link ? "_blank" : undefined}
-                rel={info.link ? "noopener noreferrer" : undefined}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.2, duration: 0.7 }}
-                whileHover={{ scale: 1.05, rotateY: 5 }}
-                className="card-premium p-8 flex flex-col items-center text-center relative overflow-hidden group"
+          {/* WhatsApp */}
+          <motion.div {...fade(1)} className={cardBase}>
+            <span className={iconWrap}>
+              <MessageCircle className="w-6 h-6" aria-hidden="true" />
+            </span>
+            <h3 className="text-lg font-semibold mb-1">WhatsApp</h3>
+            <p className="text-slate-300 mb-6">{CHINA_NUMBER}</p>
+            <div className="mt-auto flex flex-wrap gap-3">
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={primaryBtn}>
+                Chat on WhatsApp <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+              </a>
+              <CopyButton text={CHINA_NUMBER} label="Copy number" />
+            </div>
+          </motion.div>
+
+          {/* WeChat */}
+          <motion.div {...fade(2)} className={cardBase}>
+            <span className={iconWrap}>
+              <MessageCircle className="w-6 h-6" aria-hidden="true" />
+            </span>
+            <h3 className="text-lg font-semibold mb-1">WeChat</h3>
+            <p className="text-slate-300 mb-1">{CHINA_NUMBER}</p>
+            <p className="text-sm text-slate-400 mb-6">
+              Open WeChat, choose Add Contacts, and search this number.
+            </p>
+            <div className="mt-auto flex flex-wrap gap-3">
+              <CopyButton text={CHINA_NUMBER} label="Copy number" />
+              <button
+                type="button"
+                onClick={() => setQrOpen(true)}
+                className={primaryBtn}
               >
-                {/* Background gradient on hover */}
-                <div
-                  className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-                    info.color === "primary"
-                      ? "bg-gradient-to-br from-primary-50/50 to-primary-100/50"
-                      : "bg-gradient-to-br from-secondary-50/50 to-secondary-100/50"
-                  }`}
-                ></div>
+                <QrCode className="w-4 h-4" aria-hidden="true" /> Show QR code
+              </button>
+            </div>
+          </motion.div>
 
-                <div className="relative z-10">
-                  <div
-                    className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 ${
-                      info.color === "primary"
-                        ? "bg-gradient-to-r from-primary-100 to-primary-200"
-                        : "bg-gradient-to-r from-secondary-100 to-secondary-200"
-                    }`}
-                  >
-                    {info.icon}
-                  </div>
-                  <h3 className="font-semibold text-neutral-900 mb-2 group-hover:text-primary-600 transition-all duration-300">
-                    {info.title}
-                  </h3>
-                  {info.title === "WeChat" ? (
-                    <div className="flex flex-col infos-start space-y-2">
-                      {/* Number */}
-                      <span className="text-gray-800 font-medium">{info.value}</span>
-
-                      {/* QR Code with click-to-enlarge */}
-                      <a href={info.qr} target="_blank" rel="noopener noreferrer">
-                        <img
-                          src={info.qr}
-                          alt="WeChat QR Code"
-                          className="w-28 h-28 mt-1 rounded-lg shadow-md cursor-pointer hover:scale-105 transition-transform"
-                        />
-                      </a>
-                    </div>
-                  ) : (
-                    // Default rendering for other infos
-                    <a href={info.link} className="text-blue-600 hover:underline">
-                      {info.value}
-                    </a>
-                  )}
-
-                </div>
-              </Wrapper>
-            );
-          })}
+          {/* Location */}
+          <motion.div {...fade(3)} className={cardBase}>
+            <span className={iconWrap}>
+              <MapPin className="w-6 h-6" aria-hidden="true" />
+            </span>
+            <h3 className="text-lg font-semibold mb-1">Location</h3>
+            <p className="text-slate-300 mb-6 leading-relaxed">{ADDRESS}</p>
+            <div className="mt-auto">
+              <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className={primaryBtn}>
+                Open in Maps <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+              </a>
+            </div>
+          </motion.div>
         </div>
       </div>
+
+      {qrOpen && <QrModal onClose={() => setQrOpen(false)} />}
     </section>
   );
 };

@@ -15,6 +15,7 @@ import {
   Mail,
   Phone,
   MapPin,
+  X,
 } from "lucide-react";
 
 import {
@@ -69,7 +70,7 @@ const tools: Tool[] = [
   { name: "Google Workspace (50TB)", icon: <FaGoogle className="w-8 h-8 text-yellow-500" />, category: "Productivity" },
   { name: "Rezi.ai", icon: <PenTool className="w-8 h-8 text-emerald-400" />, category: "Career Tools" },
   { name: "Spotify Premium", icon: <FaSpotify className="w-8 h-8 text-green-500" />, category: "Music & Media" },
-  { name: "Apple Music", icon: <FaApple className="w-8 h-8 text-gray-300" />, category: "Music & Media" },
+  { name: "Apple Music", icon: <FaApple className="w-8 h-8 text-neutral-700" />, category: "Music & Media" },
   { name: "Amazon Music", icon: <Music className="w-8 h-8 text-indigo-500" />, category: "Music & Media" },
   // --- Engineering & CAD ---
   { name: "Autodesk AutoCAD", icon: <SiAutodesk className="w-8 h-8 text-teal-500" />, category: "Engineering & CAD" },
@@ -85,7 +86,7 @@ const tools: Tool[] = [
   
   { name: "Wordtune", icon: <BookOpen className="w-8 h-8 text-violet-400" />, category: "Writing & Productivity" },
   { name: "Copy.ai", icon: <Brain className="w-8 h-8 text-cyan-400" />, category: "Writing & Productivity" },
-  { name: "Notion AI", icon: <Database className="w-8 h-8 text-white" />, category: "Writing & Productivity" },
+  { name: "Notion AI", icon: <Database className="w-8 h-8 text-neutral-700" />, category: "Writing & Productivity" },
 
   // --- Academic Tools ---
   { name: "Course Hero", icon: <BookOpen className="w-8 h-8 text-indigo-500" />, category: "Academic Tools" },
@@ -110,7 +111,7 @@ const tools: Tool[] = [
   
   { name: "Vyond", icon: <Film className="w-8 h-8 text-orange-400" />, category: "Media Editing" },
   { name: "InVideo", icon: <Film className="w-8 h-8 text-red-400" />, category: "Media Editing" },
-  { name: "Capcut Pro", icon: <Film className="w-8 h-8 text-gray-300" />, category: "Media Editing" },
+  { name: "Capcut Pro", icon: <Film className="w-8 h-8 text-neutral-700" />, category: "Media Editing" },
 
   
 
@@ -126,17 +127,15 @@ const DigitalTools: React.FC = () => {
       <Navbar />
       <section className="section-padding pt-20 relative overflow-hidden mt-10">
         {/* Background decoration */}
-        <div className="absolute top-10 left-10 w-40 h-40 bg-primary-100 rounded-full blur-3xl opacity-30 animate-pulse" />
-        <div className="absolute bottom-10 right-10 w-60 h-60 bg-secondary-100 rounded-full blur-3xl opacity-20 animate-pulse" />
         
         <div className="container-custom relative z-10">
           <div className="text-center mb-16">
-            <div className="inline-block px-6 py-3 bg-gradient-to-r from-primary-100 to-secondary-100 rounded-full border border-primary-200/50 mb-6">
-              <span className="text-sm font-semibold text-gradient">🔥 Premium Tools</span>
+            <div className="eyebrow">
+              <span>Premium Tools</span>
             </div>
             
             <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
-              Digi-Tech Premium <span className="text-primary-600 border-b-4 border-secondary-600 pb-2">Tools & Subscriptions</span>
+              Digi-Tech Premium <span className="text-primary-600">Tools & Subscriptions</span>
             </h2>
             <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
               Access premium digital tools and subscriptions at competitive prices to boost your productivity and creativity.
@@ -174,31 +173,32 @@ const DigitalTools: React.FC = () => {
 
       {/* Contact Modal */}
       {showContact && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/70 z-50 p-4">
-          <div className="card-premium p-8 max-w-lg w-full relative">
+        <div className="fixed inset-0 flex items-center justify-center bg-black/70 z-[100] p-4" role="dialog" aria-modal="true" aria-label="Contact us" onClick={() => setShowContact(false)}>
+          <div className="card-premium p-8 max-w-lg w-full relative" onClick={(e) => e.stopPropagation()}>
             <button
               onClick={() => setShowContact(false)}
-              className="absolute top-4 right-4 text-neutral-400 hover:text-secondary-600 transition-colors p-2 rounded-full hover:bg-secondary-50"
+              aria-label="Close"
+              className="absolute top-3 right-3 inline-flex items-center justify-center w-11 h-11 text-neutral-500 hover:text-secondary-600 transition-colors rounded-full hover:bg-secondary-50 cursor-pointer"
             >
-              ✖
+              <X className="w-5 h-5" />
             </button>
             <h2 className="text-3xl font-bold text-neutral-900 mb-6">
-              Contact <span className="text-primary-600 border-b-2 border-secondary-600 pb-1">Us</span>
+              Contact <span className="text-primary-600">Us</span>
             </h2>
             <div className="space-y-6 text-neutral-600">
               <p className="text-lg">Reach out to us!</p>
               <div className="flex flex-col items-center gap-4">
                 <div className="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-primary-50 to-secondary-50 w-full">
                   <Mail className="text-primary-600" />
-                  <span>3dimengineeringsolutions@gmail.com</span>
+                  <a href="mailto:3dimengineeringsolutions@gmail.com" className="break-all hover:text-primary-700 underline-offset-2 hover:underline">3dimengineeringsolutions@gmail.com</a>
                 </div>
                 {/* Phone / WeChat Section */}
 <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-3 rounded-lg bg-gradient-to-r from-primary-50 to-secondary-50 w-full">
   <div className="flex items-center gap-3">
     <Phone className="text-secondary-600" />
     <div className="flex flex-col">
-      <span className="font-medium text-gray-800">Phone / WeChat</span>
-      <span className="text-gray-700">+86 13193302925</span>
+      <span className="font-medium text-gray-800">WhatsApp / WeChat</span>
+      <a href="https://wa.me/8613193302925" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-primary-700 hover:underline underline-offset-2">+86 13193302925</a>
     </div>
   </div>
 
@@ -212,7 +212,7 @@ const DigitalTools: React.FC = () => {
     <img
       src="/Images/WeChat.jpeg"
       alt="WeChat QR Code"
-      className="w-24 h-24 rounded-lg shadow-md cursor-pointer hover:scale-105 transition-transform"
+      className="w-32 h-auto rounded-lg shadow-md cursor-pointer hover:scale-105 transition-transform"
     />
   </a>
 </div>

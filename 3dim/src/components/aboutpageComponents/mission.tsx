@@ -2,17 +2,15 @@ const Mission: React.FC = () => {
   return (
     <section className="section-padding bg-gradient-blue-green relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-10 left-10 w-40 h-40 bg-primary-100 rounded-full blur-3xl opacity-30 animate-pulse" />
-      <div className="absolute bottom-10 right-10 w-60 h-60 bg-secondary-100 rounded-full blur-3xl opacity-20 animate-pulse" />
       
       <div className="container-custom relative z-10">
         <div className="text-center mb-16">
-          <div className="inline-block px-6 py-3 bg-gradient-to-r from-primary-100 to-secondary-100 rounded-full border border-primary-200/50 mb-6">
-            <span className="text-sm font-semibold text-gradient">🎯 Our Mission</span>
+          <div className="eyebrow">
+            <span>🎯 Our Mission</span>
           </div>
           
           <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
-            Our <span className="text-primary-600 border-b-4 border-secondary-600 pb-2">Mission</span>
+            Our <span className="text-primary-600">Mission</span>
           </h2>
           <p className="max-w-4xl mx-auto text-xl text-neutral-600 leading-relaxed">
             Our aim is to empower clients to achieve their goals by providing

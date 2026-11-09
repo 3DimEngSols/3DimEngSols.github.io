@@ -104,18 +104,16 @@ const Team: React.FC = () => {
   return (
     <section className="section-padding bg-gradient-professional relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-10 left-10 w-40 h-40 bg-primary-100 rounded-full blur-3xl opacity-30 animate-pulse" />
-      <div className="absolute bottom-10 right-10 w-60 h-60 bg-secondary-100 rounded-full blur-3xl opacity-20 animate-pulse" />
       
       <div className="container-custom relative z-10">
         {/* Section Heading */}
         <div className="text-center mb-16 mt-10">
-          <div className="inline-block px-6 py-3 bg-gradient-to-r from-primary-100 to-secondary-100 rounded-full border border-primary-200/50 mb-6">
-            <span className="text-sm font-semibold text-gradient">👥 Meet Our Team</span>
+          <div className="eyebrow">
+            <span>👥 Meet Our Team</span>
           </div>
           
           <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
-            Meet Our <span className="text-primary-600 border-b-4 border-secondary-600 pb-2">Core Team</span>
+            Meet Our <span className="text-primary-600">Core Team</span>
           </h2>
           <p className="max-w-4xl mx-auto text-lg md:text-xl text-neutral-600 leading-relaxed">
             A multidisciplinary team driving innovation across AI, mechanical design,
@@ -151,9 +149,10 @@ const Team: React.FC = () => {
                   </p>
                   <button
                     onClick={() => toggleExpand(i)}
-                    className="text-sm text-primary-600 hover:text-secondary-600 font-semibold transition-colors mb-4"
+                    aria-expanded={expandedIndex === i}
+                    className="inline-flex items-center justify-center min-h-11 px-4 text-sm text-primary-700 hover:text-secondary-700 font-semibold transition-colors mb-2 cursor-pointer"
                   >
-                    {expandedIndex === i ? "▲ Hide Bio" : "▼ Read Bio"}
+                    {expandedIndex === i ? "Hide Bio ▲" : "Read Bio ▼"}
                   </button>
                   <div
                     className={`overflow-hidden transition-all duration-500 ease-in-out ${
@@ -197,20 +196,21 @@ const Team: React.FC = () => {
                   </p>
                   <button
                     onClick={() => toggleExpand(i + founders.length)}
-                    className="text-xs text-primary-600 hover:text-secondary-600 font-semibold transition-colors mb-3"
+                    aria-expanded={expandedIndex === i + founders.length}
+                    className="inline-flex items-center justify-center min-h-11 px-4 text-sm text-primary-700 hover:text-secondary-700 font-semibold transition-colors mb-1 cursor-pointer"
                   >
                     {expandedIndex === i + founders.length
-                      ? "▲ Hide Bio"
-                      : "▼ Read Bio"}
+                      ? "Hide Bio ▲"
+                      : "Read Bio ▼"}
                   </button>
                   <div
                     className={`overflow-hidden transition-all duration-500 ease-in-out ${
                       expandedIndex === i + founders.length
-                        ? "max-h-64"
+                        ? "max-h-[32rem]"
                         : "max-h-0"
                     }`}
                   >
-                    <p className="text-neutral-600 text-xs leading-relaxed whitespace-pre-line">
+                    <p className="text-neutral-600 text-sm leading-relaxed whitespace-pre-line">
                       {member.bio}
                     </p>
                   </div>

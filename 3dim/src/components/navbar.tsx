@@ -1,104 +1,151 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Menu, X, ArrowRight } from "lucide-react";
+import { useSectionNav } from "./useSectionNav.ts";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
+  const goToSection = useSectionNav();
 
-  const handleNavClick = (id: string) => {
-    if (location.pathname !== "/") {
-      navigate("/"); // go home first
-      setTimeout(() => {
-        const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
-      }, 150);
-    } else {
-      setTimeout(() => {
-        const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
-      }, 50);
-    }
-    setIsOpen(false); // close menu on mobile
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setIsOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isOpen]);
+
+  const handleSection = (id: string) => {
+    goToSection(id);
+    setIsOpen(false);
   };
 
+  const linkBase =
+    "relative px-1 py-2 text-[15px] font-medium text-neutral-700 hover:text-primary-700 transition-colors duration-200 cursor-pointer";
+  const active = (path: string) =>
+    location.pathname === path ? "text-primary-700" : "";
+
+  const Underline = ({ on }: { on?: boolean }) => (
+    <span
+      className={`absolute left-0 -bottom-0.5 h-0.5 bg-primary-600 transition-all duration-300 ${
+        on ? "w-full" : "w-0 group-hover/link:w-full"
+      }`}
+    />
+  );
+
   return (
-    <nav className="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-secondary-200 shadow-soft">
+    <nav
+      aria-label="Main"
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolled || isOpen
+          ? "bg-white/95 backdrop-blur-lg border-b border-neutral-200 shadow-soft"
+          : "bg-white border-b border-transparent"
+      }`}
+    >
       <div className="container-custom">
-        <div className="flex justify-between items-center py-4">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="relative">
-              <img
-                src="/Images/logo2.png"
-                alt="3Dim Engineering Solutions"
-                className="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-600/20 to-secondary-600/20 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </div>
-            {/* <span className="hidden sm:block text-xl font-bold text-gradient">3Dim Engineering</span> */}
+        <div className="flex justify-between items-center h-16 md:h-[72px]">
+          <Link to="/" className="flex items-center" aria-label="3Dim Engineering Solutions home">
+            <img
+              src="/Images/logo2.png"
+              alt="3Dim Engineering Solutions"
+              className="h-10 md:h-11 w-auto"
+            />
           </Link>
 
-          {/* Desktop Links */}
-          <div className="hidden md:flex gap-8 text-neutral-700 font-medium">
-            <Link to="/" className="relative group/link hover:text-primary-600 transition-colors duration-300">
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-8">
+            <Link to="/" className={`group/link ${linkBase} ${active("/")}`}>
               Home
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary-600 group-hover/link:w-full transition-all duration-300"></span>
+              <Underline on={location.pathname === "/"} />
             </Link>
-            <button onClick={() => handleNavClick("services")} className="relative group/link hover:text-primary-600 transition-colors duration-300">
+            <button onClick={() => handleSection("services")} className={`group/link ${linkBase}`}>
               Services
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary-600 group-hover/link:w-full transition-all duration-300"></span>
+              <Underline />
             </button>
-            <button onClick={() => handleNavClick("projects")} className="relative group/link hover:text-primary-600 transition-colors duration-300">
+            <button onClick={() => handleSection("projects")} className={`group/link ${linkBase}`}>
               Projects
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary-600 group-hover/link:w-full transition-all duration-300"></span>
+              <Underline />
             </button>
-            <Link to="/tools" className="relative group/link hover:text-primary-600 transition-colors duration-300">
+            <Link to="/tools" className={`group/link ${linkBase} ${active("/tools")}`}>
               Buy tools
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary-600 group-hover/link:w-full transition-all duration-300"></span>
+              <Underline on={location.pathname === "/tools"} />
             </Link>
-            <Link to="/about" className="relative group/link hover:text-primary-600 transition-colors duration-300">
+            <Link to="/about" className={`group/link ${linkBase} ${active("/about")}`}>
               Our Team
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary-600 group-hover/link:w-full transition-all duration-300"></span>
+              <Underline on={location.pathname === "/about"} />
             </Link>
-            <button onClick={() => handleNavClick("contact")} className="relative group/link hover:text-primary-600 transition-colors duration-300">
+            <button
+              onClick={() => handleSection("contact")}
+              className="inline-flex items-center gap-2 h-11 px-5 rounded-full bg-neutral-900 text-white text-sm font-semibold hover:bg-primary-700 transition-colors duration-200 cursor-pointer"
+            >
               Contact
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary-600 group-hover/link:w-full transition-all duration-300"></span>
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile toggle */}
           <button
-            className="md:hidden text-neutral-700 focus:outline-none hover:text-primary-600 transition-colors duration-300 p-2 rounded-lg hover:bg-secondary-50"
+            className="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-xl text-neutral-800 hover:bg-neutral-100 transition-colors duration-200 cursor-pointer"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
           >
-            {isOpen ? "✖" : "☰"}
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
-
-        {/* Mobile Dropdown */}
-        {isOpen && (
-          <div className="md:hidden bg-white border-t border-secondary-200 shadow-soft-lg">
-            <div className="flex flex-col items-center gap-6 py-6 text-neutral-700 font-medium">
-              <button onClick={() => handleNavClick("services")} className="hover:text-primary-600 transition-colors duration-300 px-4 py-2 rounded-lg hover:bg-secondary-50">
-                Services
-              </button>
-              <button onClick={() => handleNavClick("projects")} className="hover:text-primary-600 transition-colors duration-300 px-4 py-2 rounded-lg hover:bg-secondary-50">
-                Projects
-              </button>
-              <Link to="/tools" className="hover:text-primary-600 transition-colors duration-300 px-4 py-2 rounded-lg hover:bg-secondary-50">
-                Buy tools
-              </Link>
-              <Link to="/about" className="hover:text-primary-600 transition-colors duration-300 px-4 py-2 rounded-lg hover:bg-secondary-50" onClick={() => setIsOpen(false)}>
-                About
-              </Link>
-              <button onClick={() => handleNavClick("contact")} className="hover:text-primary-600 transition-colors duration-300 px-4 py-2 rounded-lg hover:bg-secondary-50">
-                Contact
-              </button>
-            </div>
-          </div>
-        )}
       </div>
+
+      {/* Mobile drawer */}
+      {isOpen && (
+        <div id="mobile-menu" className="md:hidden border-t border-neutral-200 bg-white">
+          <div className="container-custom flex flex-col py-3">
+            {[
+              { label: "Home", to: "/" },
+              { label: "Services", id: "services" },
+              { label: "Projects", id: "projects" },
+              { label: "Buy tools", to: "/tools" },
+              { label: "Our Team", to: "/about" },
+            ].map((item) =>
+              item.to ? (
+                <Link
+                  key={item.label}
+                  to={item.to}
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center justify-between min-h-12 px-2 text-base font-medium text-neutral-800 border-b border-neutral-100 hover:text-primary-700"
+                >
+                  {item.label}
+                  <ArrowRight className="w-4 h-4 text-neutral-400" aria-hidden="true" />
+                </Link>
+              ) : (
+                <button
+                  key={item.label}
+                  onClick={() => handleSection(item.id as string)}
+                  className="flex items-center justify-between min-h-12 px-2 text-base font-medium text-neutral-800 border-b border-neutral-100 hover:text-primary-700 text-left"
+                >
+                  {item.label}
+                  <ArrowRight className="w-4 h-4 text-neutral-400" aria-hidden="true" />
+                </button>
+              )
+            )}
+            <button
+              onClick={() => handleSection("contact")}
+              className="mt-4 mb-2 inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-primary-600 text-white font-semibold hover:bg-primary-700 transition-colors"
+            >
+              Contact us
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };

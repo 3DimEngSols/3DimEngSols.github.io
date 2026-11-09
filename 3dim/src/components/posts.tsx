@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import { motion } from "framer-motion";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Post {
   title: string;
@@ -124,88 +125,96 @@ link:'https://www.linkedin.com/posts/3dim-engineering-solutions_title-optimizing
 ];
 
 const Posts: React.FC = () => {
+  const scroller = useRef<HTMLDivElement>(null);
+
+  const scrollByCard = (dir: 1 | -1) => {
+    const el = scroller.current;
+    if (!el) return;
+    const card = el.querySelector("article");
+    const step = card ? card.getBoundingClientRect().width + 24 : 360;
+    el.scrollBy({ left: dir * step, behavior: "smooth" });
+  };
+
+  const arrow =
+    "inline-flex items-center justify-center w-12 h-12 rounded-full border border-neutral-300 bg-white text-neutral-800 shadow-soft hover:border-primary-500 hover:text-primary-700 transition-colors duration-200 cursor-pointer";
+
   return (
     <section className="section-padding bg-gradient-blue-green relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-10 left-10 w-40 h-40 bg-secondary-100 rounded-full blur-3xl opacity-30 animate-pulse" />
-      <div className="absolute bottom-10 right-10 w-60 h-60 bg-primary-100 rounded-full blur-3xl opacity-20 animate-pulse" />
-      
       <div className="container-custom relative z-10">
-        <div className="text-center mb-16">
-          <div className="inline-block px-6 py-3 bg-gradient-to-r from-primary-100 to-secondary-100 rounded-full border border-primary-200/50 mb-6">
-            <span className="text-sm font-semibold text-gradient">📰 Latest News</span>
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 md:mb-14">
+          <div className="max-w-3xl">
+            <span className="eyebrow">Latest News</span>
+            <motion.h2
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-4xl md:text-5xl font-bold text-neutral-900 mb-4"
+            >
+              Recent Updates & <span className="text-primary-600">Posts</span>
+            </motion.h2>
+            <p className="text-lg md:text-xl text-neutral-600">
+              Stay updated with our latest achievements, research breakthroughs, and industry insights.
+            </p>
           </div>
-          
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6"
-          >
-            Recent Updates & <span className="text-primary-600 border-b-4 border-secondary-600 pb-2">Posts</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.7 }}
-            className="text-xl text-neutral-600 max-w-3xl mx-auto"
-          >
-            Stay updated with our latest achievements, research breakthroughs,
-            and industry insights.
-          </motion.p>
+          <div className="hidden md:flex gap-3 shrink-0">
+            <button type="button" onClick={() => scrollByCard(-1)} aria-label="Previous posts" className={arrow}>
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button type="button" onClick={() => scrollByCard(1)} aria-label="Next posts" className={arrow}>
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
         </div>
+      </div>
 
-        {/* Horizontal Scroll */}
-        <div className="max-w-7xl mx-auto overflow-x-auto scrollbar-thin scrollbar-thumb-primary-300 scrollbar-track-neutral-200">
-          <div className="flex flex-nowrap space-x-6 pb-4">
-            {posts.map((post, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.6 }}
-                whileHover={{ scale: 1.05, rotate: -1 }}
-                className="flex-shrink-0 w-96 card-premium p-6 text-left relative overflow-hidden group"
-              >
-                {/* Background gradient on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 to-secondary-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                
-                <div className="relative z-10">
-                  <h3 className="text-lg font-bold text-primary-600 mb-3 group-hover:text-neutral-900 transition-all duration-300">
-                    {post.title}
-                  </h3>
-                  {post.journal && (
-                    <p className="text-sm font-semibold text-secondary-600 mb-3">
-                      Publication: {post.journal}
-                    </p>
-                  )}
-                  <p className="text-neutral-700 whitespace-pre-line leading-relaxed group-hover:text-neutral-800 transition-colors duration-300">
-                    {post.content}
-                  </p>
-                  {post.image && (
-                    <img
-                      src={post.image}
-                      alt="Post"
-                      className="w-full mt-4 rounded-lg shadow-md"
-                    />
-                  )}
-                  {post.link && (
-                    <a
-                      href={post.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center mt-4 text-primary-600 hover:text-secondary-600 font-medium transition-all duration-300"
-                    >
-                      🔗 Read More
-                    </a>
-                  )}
+      <div className="container-custom relative z-10">
+        <div
+          ref={scroller}
+          tabIndex={0}
+          aria-label="Recent posts, scroll horizontally"
+          className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-thin"
+        >
+          {posts.map((post, i) => (
+            <motion.article
+              key={i}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: Math.min(i, 4) * 0.06, duration: 0.5 }}
+              className="snap-start shrink-0 w-[85vw] sm:w-96 card-premium p-6 flex flex-col text-left"
+            >
+              <h3 className="text-lg font-bold text-neutral-900 mb-3 leading-snug">
+                {post.title.replace(/^#\s*/, "").trim()}
+              </h3>
+              {post.journal && (
+                <p className="text-sm font-semibold text-secondary-700 mb-3">
+                  Publication: {post.journal}
+                </p>
+              )}
+              <p className="text-neutral-600 whitespace-pre-line leading-relaxed">{post.content}</p>
+              {post.image && (
+                <div className="mt-4 h-56 rounded-xl border border-neutral-200 bg-white overflow-hidden">
+                  <img
+                    src={post.image}
+                    alt={`Cover of: ${post.title}`}
+                    loading="lazy"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
-              </motion.div>
-            ))}
-          </div>
+              )}
+              {post.link && (
+                <a
+                  href={post.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-auto pt-5 inline-flex items-center gap-1.5 font-semibold text-primary-700 hover:text-secondary-700 transition-colors duration-200 min-h-11"
+                >
+                  Read More <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+                </a>
+              )}
+            </motion.article>
+          ))}
         </div>
       </div>
     </section>
