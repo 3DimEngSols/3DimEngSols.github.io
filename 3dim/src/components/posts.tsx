@@ -144,7 +144,7 @@ const Posts: React.FC = () => (
       <article
         key={i}
         data-card
-        className="card-premium snap-start shrink-0 w-[var(--card-w)] p-5 md:p-4 lg:p-5 flex flex-col text-left"
+        className={`card-premium snap-start shrink-0 w-[var(--card-w)] ${post.image ? "" : "md:w-[calc(var(--card-w)*0.6)]"} p-5 md:p-4 lg:p-5 flex flex-col text-left`}
       >
         {/* Cards with a paper cover: text beside the image on tablet/desktop, so the card stays short */}
         <div className={post.image ? "md:grid md:grid-cols-[1fr_1.05fr] md:gap-5 flex-1" : "flex-1"}>

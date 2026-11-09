@@ -1,5 +1,5 @@
 // src/components/homepageComponents/DigitalTools.tsx
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   PenTool,
   BookOpen,
@@ -16,6 +16,8 @@ import {
   Phone,
   MapPin,
   X,
+  MessageCircle,
+  ArrowUpRight,
 } from "lucide-react";
 
 import {
@@ -39,6 +41,8 @@ import {
 } from "react-icons/si";
 
 import Navbar from "../components/navbar.tsx";
+import Footer from "../components/footer.tsx";
+import SectionHeader from "../components/SectionHeader.tsx";
 
 interface Tool {
   name: string;
@@ -119,116 +123,177 @@ const tools: Tool[] = [
   
 ];
 
-const DigitalTools: React.FC = () => {
-  const [showContact, setShowContact] = useState(false);
+const CHINA_NUMBER = "+86 13193302925";
+const EMAIL = "3dimengineeringsolutions@gmail.com";
+const ADDRESS =
+  "E Building, 12th Floor, Chamba District, Free Trade Center, Xi'an, Shaanxi Province, 710072, P.R. China";
+const categories = ["All", ...Array.from(new Set(tools.map((t) => t.category)))];
+
+const BuyModal: React.FC<{ tool: Tool; onClose: () => void }> = ({ tool, onClose }) => {
+  const closeRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    closeRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [onClose]);
+
+  const message = `Hello 3Dim Engineering Solutions, I'd like to buy: ${tool.name}`;
+  const row = "flex items-start gap-3 rounded-xl border border-neutral-200 bg-neutral-50 p-3";
 
   return (
-    <div className="bg-gradient-professional text-neutral-900 min-h-screen">
-      <Navbar />
-      <section className="section-padding pt-20 relative overflow-hidden mt-10">
-        {/* Background decoration */}
-        
-        <div className="container-custom relative z-10">
-          <div className="section-header">
-            <div className="eyebrow">
-              <span>Premium Tools</span>
-            </div>
-            
-            <h2 className="section-title">
-              Digi-Tech Premium <span className="text-primary-600">Tools & Subscriptions</span>
-            </h2>
-            <p className="section-lead">
-              Access premium digital tools and subscriptions at competitive prices to boost your productivity and creativity.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {tools.map((tool, i) => (
-              <div
-                key={i}
-                className="card-premium p-6 hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden"
-              >
-                {/* Background gradient on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 to-secondary-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                
-                <div className="relative z-10">
-                  <div className="flex justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <div className="p-3 rounded-full bg-gradient-to-r from-primary-100 to-secondary-100 group-hover:shadow-lg transition-all duration-300">
-                      {tool.icon}
-                    </div>
-                  </div>
-                  <h3 className="text-lg font-bold text-neutral-900 mb-2 group-hover:text-primary-600 transition-all duration-300">{tool.name}</h3>
-                  <p className="text-neutral-500 text-sm mb-6 group-hover:text-neutral-600 transition-colors duration-300">{tool.category}</p>
-                  <button
-                    onClick={() => setShowContact(true)}
-                    className="w-full btn-primary"
-                  >
-                    Buy Now
-                  </button>
-                </div>
-              </div>
-            ))}
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+      onClick={onClose}
+    >
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label={`Buy ${tool.name}`}
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-md max-h-[90vh] overflow-y-auto rounded-2xl bg-white p-5 shadow-2xl"
+      >
+        <button
+          ref={closeRef}
+          onClick={onClose}
+          aria-label="Close"
+          className="absolute top-3 right-3 inline-flex items-center justify-center w-10 h-10 rounded-full text-neutral-500 hover:bg-neutral-100 cursor-pointer"
+        >
+          <X className="w-5 h-5" />
+        </button>
+        <div className="flex items-center gap-3 pr-10 mb-1">
+          <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-neutral-100 [&>svg]:w-6 [&>svg]:h-6">
+            {tool.icon}
+          </span>
+          <div>
+            <h2 className="text-lg font-bold text-ink leading-tight">{tool.name}</h2>
+            <p className="text-xs text-neutral-500">{tool.category}</p>
           </div>
         </div>
-      </section>
+        <p className="text-sm text-neutral-600 mt-3 mb-4">
+          Contact us to order this subscription. We usually reply on WhatsApp.
+        </p>
 
-      {/* Contact Modal */}
-      {showContact && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/70 z-[100] p-4" role="dialog" aria-modal="true" aria-label="Contact us" onClick={() => setShowContact(false)}>
-          <div className="card-premium p-8 max-w-lg w-full relative" onClick={(e) => e.stopPropagation()}>
-            <button
-              onClick={() => setShowContact(false)}
-              aria-label="Close"
-              className="absolute top-3 right-3 inline-flex items-center justify-center w-11 h-11 text-neutral-500 hover:text-secondary-600 transition-colors rounded-full hover:bg-secondary-50 cursor-pointer"
-            >
-              <X className="w-5 h-5" />
-            </button>
-            <h2 className="text-3xl font-bold text-neutral-900 mb-6">
-              Contact <span className="text-primary-600">Us</span>
-            </h2>
-            <div className="space-y-6 text-neutral-600">
-              <p className="text-lg">Reach out to us!</p>
-              <div className="flex flex-col items-center gap-4">
-                <div className="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-primary-50 to-secondary-50 w-full">
-                  <Mail className="text-primary-600" />
-                  <a href="mailto:3dimengineeringsolutions@gmail.com" className="break-all hover:text-primary-700 underline-offset-2 hover:underline">3dimengineeringsolutions@gmail.com</a>
-                </div>
-                {/* Phone / WeChat Section */}
-<div className="flex flex-col sm:flex-row sm:items-center gap-4 p-3 rounded-lg bg-gradient-to-r from-primary-50 to-secondary-50 w-full">
-  <div className="flex items-center gap-3">
-    <Phone className="text-secondary-600" />
-    <div className="flex flex-col">
-      <span className="font-medium text-gray-800">WhatsApp / WeChat</span>
-      <a href="https://wa.me/8613193302925" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-primary-700 hover:underline underline-offset-2">+86 13193302925</a>
+        <div className="flex flex-col sm:flex-row gap-2 mb-4">
+          <a
+            href={`https://wa.me/8613193302925?text=${encodeURIComponent(message)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-lift flex-1 inline-flex items-center justify-center gap-2 h-11 rounded-full bg-primary-600 text-white text-sm font-semibold hover:bg-primary-700"
+          >
+            <MessageCircle className="w-4 h-4" aria-hidden="true" /> Order on WhatsApp
+          </a>
+          <a
+            href={`mailto:${EMAIL}?subject=${encodeURIComponent(`Order: ${tool.name}`)}`}
+            className="btn-lift flex-1 inline-flex items-center justify-center gap-2 h-11 rounded-full border border-neutral-300 text-sm font-semibold text-neutral-800 hover:border-primary-500 hover:text-primary-700"
+          >
+            <Mail className="w-4 h-4" aria-hidden="true" /> Email us
+          </a>
+        </div>
+
+        <div className="space-y-2.5 text-sm">
+          <div className={row}>
+            <Phone className="w-4 h-4 mt-0.5 shrink-0 text-primary-600" aria-hidden="true" />
+            <div className="flex-1">
+              <p className="font-semibold text-neutral-800">WhatsApp / WeChat</p>
+              <p className="text-neutral-600">{CHINA_NUMBER}</p>
+            </div>
+            <a href="/Images/WeChat.jpeg" target="_blank" rel="noopener noreferrer" aria-label="Open WeChat QR code">
+              <img src="/Images/WeChat.jpeg" alt="WeChat QR code" className="w-20 h-auto rounded-md border border-neutral-200" />
+            </a>
+          </div>
+          <div className={row}>
+            <Mail className="w-4 h-4 mt-0.5 shrink-0 text-primary-600" aria-hidden="true" />
+            <a href={`mailto:${EMAIL}`} className="break-all text-neutral-700 hover:text-primary-700">{EMAIL}</a>
+          </div>
+          <div className={row}>
+            <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-primary-600" aria-hidden="true" />
+            <span className="text-neutral-700">{ADDRESS}</span>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  );
+};
 
-  {/* QR Code */}
-  <a
-    href="/Images/WeChat.jpeg" // ✅ Update with your actual path
-    target="_blank"
-    rel="noopener noreferrer"
-    className="self-start sm:self-auto"
-  >
-    <img
-      src="/Images/WeChat.jpeg"
-      alt="WeChat QR Code"
-      className="w-32 h-auto rounded-lg shadow-md cursor-pointer hover:scale-105 transition-transform"
-    />
-  </a>
-</div>
+const DigitalTools: React.FC = () => {
+  const [selected, setSelected] = useState<Tool | null>(null);
+  const [filter, setFilter] = useState("All");
+  const visible = filter === "All" ? tools : tools.filter((t) => t.category === filter);
 
-                <div className="flex items-start gap-3 p-3 rounded-lg bg-gradient-to-r from-primary-50 to-secondary-50 w-full">
-                  <MapPin className="text-primary-600 mt-1" />
-                  <span>
-                    E Building, 12th Floor, Chamba District, Free Trade Center, Xi'an,  
-                    Shaanxi Province, 710072, P.R. China
-                  </span>
-                </div>
-              </div>
-            </div>
+  useEffect(() => {
+    document.title = "Buy Tools | 3Dim Engineering Solutions";
+    return () => {
+      document.title = "3Dim Engineering Solutions";
+    };
+  }, []);
+
+  return (
+    <div className="bg-neutral-50 text-neutral-900 min-h-screen flex flex-col">
+      <Navbar />
+      <main className="flex-1 pt-20 md:pt-24 pb-12">
+        <div className="container-custom">
+          <SectionHeader
+            eyebrow="Premium Tools"
+            title={<>Digi-Tech Premium <span className="text-primary-600">Tools & Subscriptions</span></>}
+            lead="Access premium digital tools and subscriptions at competitive prices to boost your productivity and creativity."
+          />
+
+          <div className="flex flex-wrap justify-center gap-2 mb-6" role="group" aria-label="Filter by category">
+            {categories.map((c) => {
+              const on = c === filter;
+              const count = c === "All" ? tools.length : tools.filter((t) => t.category === c).length;
+              return (
+                <button
+                  key={c}
+                  type="button"
+                  aria-pressed={on}
+                  onClick={() => setFilter(c)}
+                  className={`h-9 px-3.5 rounded-full text-xs font-semibold border transition-colors duration-200 cursor-pointer ${
+                    on
+                      ? "bg-ink text-white border-ink"
+                      : "bg-white text-neutral-700 border-neutral-300 hover:border-primary-500 hover:text-primary-700"
+                  }`}
+                >
+                  {c} <span className={on ? "text-white/60" : "text-neutral-400"}>{count}</span>
+                </button>
+              );
+            })}
           </div>
+
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 list-none p-0 m-0">
+            {visible.map((tool) => (
+              <li
+                key={tool.name}
+                className="group flex items-center gap-3 rounded-xl border border-neutral-200 bg-white p-3 shadow-sm transition-all duration-200 hover:border-primary-300 hover:shadow-md"
+              >
+                <span className="inline-flex items-center justify-center w-11 h-11 shrink-0 rounded-xl bg-neutral-100 [&>svg]:w-6 [&>svg]:h-6">
+                  {tool.icon}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-sm font-bold text-ink leading-snug">{tool.name}</h3>
+                  <p className="text-xs text-neutral-500">{tool.category}</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setSelected(tool)}
+                  aria-label={`Buy ${tool.name}`}
+                  className="btn-lift shrink-0 inline-flex items-center gap-1 h-9 px-3.5 rounded-full bg-primary-600 text-white text-xs font-semibold hover:bg-primary-700 cursor-pointer"
+                >
+                  Buy <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
-      )}
+      </main>
+      <Footer />
+      {selected && <BuyModal tool={selected} onClose={() => setSelected(null)} />}
     </div>
   );
 };
