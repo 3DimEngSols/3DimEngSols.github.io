@@ -5,10 +5,38 @@ interface Post {
   title: string;
   content: string;
   image?: string;
+  journal?: string;
   link?: string;
 }
 
 const posts: Post[] = [
+  {
+    title: "Recent advances in chitosan-based active composites for sustainable food packaging and preservation",
+    journal: "Journal of Reinforced Plastics and Composites",
+    content: `This review examines how chitosan-based packaging can progress toward practical industrial use. It covers biopolymer blending, chemical cross-linking and bioactive fillers, and how these strategies affect mechanical strength, barrier properties and antimicrobial performance for preserving produce, meat and seafood.
+
+It also addresses the barriers to commercial adoption, including moisture sensitivity, brittleness, processing constraints and regulatory concerns over nanoparticle migration.`,
+    image: "/Images/paper-chitosan-packaging.jpg",
+    link: "https://www.linkedin.com/posts/3dim-engineering-solutions_advancing-sustainablepackaging-chitosan-activity-7521381093661671425-C3RZ",
+  },
+  {
+    title: "Numerical modelling of pull forces considering the pipe–soil interaction in pipe bursting for trenchless replacement",
+    journal: "Canadian Geotechnical Journal",
+    content: `This study develops a material-specific numerical model that predicts the pulling forces required for trenchless pipe replacement, distinguishing brittle concrete fracture from ductile high-density polyethylene deformation.
+
+Validated on two DN300 field projects in Xinjiang, China, the model reduced prediction error by up to 31.37% for concrete pipes and 45.49% for HDPE pipes.`,
+    image: "/Images/paper-pipe-bursting.jpg",
+    link: "https://www.linkedin.com/posts/3dim-engineering-solutions_advancing-civilengineering-geotechnicalengineering-activity-7522535301420990464-5Ip-",
+  },
+  {
+    title: "Asymmetric Effect of Transport Infrastructure Investment on Economic Development: A Quantile Regression and Wavelet Analysis of China and Oman",
+    journal: "Industrial Engineering and Management Systems",
+    content: `This study uses quantile regression, quantile causality and wavelet coherence analysis to investigate how transport infrastructure affects economic growth across development stages.
+
+It finds asymmetric, time-varying effects: China shows a strong and steady response to infrastructure investment, while Oman's effects depend on urbanization, energy use and foreign direct investment.`,
+    image: "/Images/paper-transport-infrastructure.jpg",
+    link: "https://www.linkedin.com/posts/3dim-engineering-solutions_advancing-activity-7415239424172822529-CpZ9",
+  },
   {
     title: "Biomechanical Evaluation of Implant Materials and Connection Designs – Published in Odontology 🦷📖",
     content: `We are delighted to announce the publication of our latest research paper titled 
@@ -149,6 +177,11 @@ const Posts: React.FC = () => {
                   <h3 className="text-lg font-bold text-primary-600 mb-3 group-hover:text-neutral-900 transition-all duration-300">
                     {post.title}
                   </h3>
+                  {post.journal && (
+                    <p className="text-sm font-semibold text-secondary-600 mb-3">
+                      Publication: {post.journal}
+                    </p>
+                  )}
                   <p className="text-neutral-700 whitespace-pre-line leading-relaxed group-hover:text-neutral-800 transition-colors duration-300">
                     {post.content}
                   </p>

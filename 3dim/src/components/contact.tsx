@@ -12,23 +12,23 @@ const contactInfo = [
   {
     icon: <MessageCircle className="w-8 h-8 text-green-600" />,
     title: "WeChat",
-    value: "+86 17792251931", // show number
+    value: "+86 13193302925", // show number
     color: "primary",
     qr: "/Images/WeChat.jpeg", // show QR code image
   },
   {
     icon: <MessageCircle className="w-8 h-8 text-green-600" />,
     title: "WhatsApp",
-    value: "+86 17792251931",
+    value: "+86 13193302925",
     color: "secondary",
-    link: "https://wa.me/8617792251931",
+    link: "https://wa.me/8613193302925",
   },
 
   {
     icon: <MapPin className="w-8 h-8 text-primary-600" />,
     title: "Location",
     value:
-      "E Building, 12th Floor, Chanba District, Free Trade Center, Xi'an, Shaanxi Province, 710072, P.R. China",
+      "E Building, 12th Floor, Chamba District, Free Trade Center, Xi'an, Shaanxi Province, 710072, P.R. China",
     color: "primary",
   },
   

@@ -198,7 +198,7 @@ const DigitalTools: React.FC = () => {
     <Phone className="text-secondary-600" />
     <div className="flex flex-col">
       <span className="font-medium text-gray-800">Phone / WeChat</span>
-      <span className="text-gray-700">+86 17792251931</span>
+      <span className="text-gray-700">+86 13193302925</span>
     </div>
   </div>
 
@@ -220,7 +220,7 @@ const DigitalTools: React.FC = () => {
                 <div className="flex items-start gap-3 p-3 rounded-lg bg-gradient-to-r from-primary-50 to-secondary-50 w-full">
                   <MapPin className="text-primary-600 mt-1" />
                   <span>
-                    E Building, 12th Floor, Chanba District, Free Trade Center, Xi'an,  
+                    E Building, 12th Floor, Chamba District, Free Trade Center, Xi'an,  
                     Shaanxi Province, 710072, P.R. China
                   </span>
                 </div>
