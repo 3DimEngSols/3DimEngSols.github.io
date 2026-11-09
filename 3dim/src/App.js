@@ -4,19 +4,13 @@ import HomePage from "./pages/Home.tsx";
 import AboutPage from "./pages/AboutPage.tsx";
 import DigitalTools from "./pages/tools.tsx";
 import ServicePage from "./pages/ServicePage.tsx";
-import { scrollToSection } from "./components/useSectionNav.ts";
+import { settleOnSection } from "./components/useSectionNav.ts";
 
 // Scroll to the #section on navigation, or to the top of a new page
 function ScrollManager() {
   const { pathname, hash } = useLocation();
   useEffect(() => {
-    if (hash) {
-      const t = setTimeout(
-        () => scrollToSection(hash.slice(1)),
-        150
-      );
-      return () => clearTimeout(t);
-    }
+    if (hash) return settleOnSection(hash.slice(1));
     window.scrollTo({ top: 0, behavior: "instant" });
   }, [pathname, hash]);
   return null;
