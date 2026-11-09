@@ -119,7 +119,7 @@ const Contact: React.FC = () => {
   return (
     <section
       id="contact"
-      className="relative isolate overflow-hidden bg-[#0a1020] text-white section-padding"
+      className="relative isolate overflow-hidden bg-ink text-white section-padding"
     >
       <div className="hero-grid absolute inset-0 -z-10" aria-hidden="true" />
       <div
@@ -131,7 +131,7 @@ const Contact: React.FC = () => {
       <div className="container-custom">
         <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
           <span className="eyebrow !bg-white/5 !border-white/15 !text-primary-300">Get In Touch</span>
-          <motion.h2 {...fade(0)} className="text-4xl md:text-5xl font-bold mb-5">
+          <motion.h2 {...fade(0)} className="section-title !text-white">
             Contact <span className="text-primary-400">Us</span>
           </motion.h2>
           <motion.p {...fade(1)} className="text-lg md:text-xl text-slate-300">

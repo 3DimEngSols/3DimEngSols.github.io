@@ -4,12 +4,12 @@ const Mission: React.FC = () => {
       {/* Background decoration */}
       
       <div className="container-custom relative z-10">
-        <div className="text-center mb-16">
+        <div className="section-header">
           <div className="eyebrow">
             <span>🎯 Our Mission</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
+          <h2 className="section-title">
             Our <span className="text-primary-600">Mission</span>
           </h2>
           <p className="max-w-4xl mx-auto text-xl text-neutral-600 leading-relaxed">

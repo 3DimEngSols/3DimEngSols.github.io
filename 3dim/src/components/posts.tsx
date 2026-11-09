@@ -149,7 +149,7 @@ const Posts: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-4xl md:text-5xl font-bold text-neutral-900 mb-4"
+              className="section-title"
             >
               Recent Updates & <span className="text-primary-600">Posts</span>
             </motion.h2>
@@ -188,7 +188,7 @@ const Posts: React.FC = () => {
                 {post.title.replace(/^#\s*/, "").trim()}
               </h3>
               {post.journal && (
-                <p className="text-sm font-semibold text-secondary-700 mb-3">
+                <p className="text-sm font-semibold text-primary-700 mb-3">
                   Publication: {post.journal}
                 </p>
               )}

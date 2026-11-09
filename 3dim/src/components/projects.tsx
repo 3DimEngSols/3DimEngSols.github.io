@@ -23,7 +23,7 @@ const projects: Project[] = [
       "Explainable AI for Fly Ash Foam Concrete – Published in Sustainable Concrete",
     description:
       "Through collaborative efforts, we introduced transparent AI models for predicting the strength of fly ash foam composites, advancing eco-friendly construction materials.",
-    icon: <BookMarked className="w-12 h-12 text-secondary-600" />,
+    icon: <BookMarked className="w-12 h-12 text-primary-600" />,
     link: "https://lnkd.in/dy-bKimA",
   },
   {
@@ -44,7 +44,7 @@ const projects: Project[] = [
     title: "Pipe-Bursting Simulation & Defect Detection",
     description:
       "As part of a team effort, we developed cutting-edge numerical models for brittle/ductile pipe bursting and AI-driven defect detection in turbine blades using signal processing.",
-    icon: <Network className="w-12 h-12 text-secondary-600" />,
+    icon: <Network className="w-12 h-12 text-primary-600" />,
   },
   {
     title: "Deep Reinforcement Learning for Game Optimization",
@@ -64,7 +64,7 @@ const projects: Project[] = [
     title: "Community Networking Application",
     description:
       "A social platform enabling users to share updates, interact through posts and media, and stay connected in real time with an intuitive, mobile-friendly interface.",
-    icon: <Users className="w-12 h-12 text-secondary-600" />,
+    icon: <Users className="w-12 h-12 text-primary-600" />,
   },
   {
     title: "Live Messaging & Collaboration Tool",
@@ -76,7 +76,7 @@ const projects: Project[] = [
     title: "AI-Integrated Productivity Assistant",
     description:
       "An intelligent document assistant that leverages large language models for summarization, Q&A, and interactive chatbot support within a modern web application.",
-    icon: <Bot className="w-12 h-12 text-secondary-600" />,
+    icon: <Bot className="w-12 h-12 text-primary-600" />,
   },
 ];
 
@@ -88,15 +88,15 @@ const Projects: React.FC = () => {
 
       <div className="container-custom relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="section-header">
           <div className="eyebrow">
             <span>Research Excellence</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
+          <h2 className="section-title">
             Research & <span className="text-primary-600">Projects</span>
           </h2>
-          <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+          <p className="section-lead">
             Cutting-edge research and innovative projects that push the boundaries of engineering excellence.
           </p>
         </div>

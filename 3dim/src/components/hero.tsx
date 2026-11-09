@@ -3,13 +3,6 @@ import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, MessageCircle } from "lucide-react";
 
-const stats = [
-  { value: "100+", label: "Projects Completed" },
-  { value: "50+", label: "Happy Clients" },
-  { value: "24/7", label: "Support" },
-  { value: "4+", label: "Years Experience" },
-];
-
 /** Animated isometric wireframe: a nod to the "3D" in 3Dim. */
 const Wireframe: React.FC = () => {
   const reduce = useReducedMotion();
@@ -64,7 +57,7 @@ const Wireframe: React.FC = () => {
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative isolate overflow-hidden bg-[#0a1020] text-white pt-28 pb-16 md:pt-36 md:pb-24">
+    <section className="relative isolate overflow-hidden bg-ink text-white pt-28 pb-20 md:pt-40 md:pb-32">
       {/* Background */}
       <div className="hero-grid absolute inset-0 -z-10" aria-hidden="true" />
       <div
@@ -88,7 +81,7 @@ const Hero: React.FC = () => {
               className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.08] mb-6"
             >
               WE MAKE YOUR{" "}
-              <span className="bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary-300 to-primary-500 bg-clip-text text-transparent">
                 IMAGINATION
               </span>{" "}
               A REALITY
@@ -137,25 +130,6 @@ const Hero: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Stats */}
-        <motion.ul
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.7 }}
-          className="mt-14 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 list-none p-0"
-        >
-          {stats.map((stat) => (
-            <li
-              key={stat.label}
-              className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur px-5 py-6 text-center"
-            >
-              <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary-300 to-secondary-300 bg-clip-text text-transparent">
-                {stat.value}
-              </div>
-              <div className="mt-1.5 text-sm text-slate-300">{stat.label}</div>
-            </li>
-          ))}
-        </motion.ul>
       </div>
     </section>
   );

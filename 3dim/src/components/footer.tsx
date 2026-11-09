@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
     "inline-flex items-center min-h-11 text-slate-300 hover:text-primary-300 transition-colors duration-200 cursor-pointer";
 
   return (
-    <footer className="relative isolate overflow-hidden bg-[#070c18] text-slate-300">
+    <footer className="relative isolate overflow-hidden bg-ink text-slate-300">
       <div className="hero-grid absolute inset-0 -z-10 opacity-60" aria-hidden="true" />
       <div className="container-custom pt-14 pb-8">
         <div className="grid gap-10 md:grid-cols-[1.3fr_1fr_1.4fr]">
@@ -82,7 +82,7 @@ const Footer: React.FC = () => {
 
         <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between text-sm text-slate-500">
           <p>© {new Date().getFullYear()} 3Dim Engineering Solutions. All rights reserved.</p>
-          <p>Leading Engineering Excellence · Innovation & Precision · Global Solutions</p>
+          <p>Xi'an, Shaanxi, P.R. China · Engineering, AI & Research</p>
         </div>
       </div>
     </footer>

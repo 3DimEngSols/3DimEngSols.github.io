@@ -112,7 +112,7 @@ const Team: React.FC = () => {
             <span>👥 Meet Our Team</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
+          <h2 className="section-title">
             Meet Our <span className="text-primary-600">Core Team</span>
           </h2>
           <p className="max-w-4xl mx-auto text-lg md:text-xl text-neutral-600 leading-relaxed">
@@ -137,6 +137,7 @@ const Team: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary-50/50 to-secondary-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative z-10 flex flex-col items-center text-center">
                   <img
+                    loading="lazy"
                     src={member.image}
                     alt={member.name}
                     className="w-36 h-36 rounded-full object-cover border-4 border-secondary-500 shadow-md mb-6 group-hover:scale-105 transition-transform duration-300"
@@ -184,6 +185,7 @@ const Team: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 to-secondary-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative z-10 flex flex-col items-center text-center">
                   <img
+                    loading="lazy"
                     src={member.image}
                     alt={member.name}
                     className="w-28 h-28 rounded-full object-cover border-2 border-secondary-300 shadow mb-4 group-hover:scale-105 transition-transform duration-300"

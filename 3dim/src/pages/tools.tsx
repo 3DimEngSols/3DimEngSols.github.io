@@ -129,15 +129,15 @@ const DigitalTools: React.FC = () => {
         {/* Background decoration */}
         
         <div className="container-custom relative z-10">
-          <div className="text-center mb-16">
+          <div className="section-header">
             <div className="eyebrow">
               <span>Premium Tools</span>
             </div>
             
-            <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
+            <h2 className="section-title">
               Digi-Tech Premium <span className="text-primary-600">Tools & Subscriptions</span>
             </h2>
-            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+            <p className="section-lead">
               Access premium digital tools and subscriptions at competitive prices to boost your productivity and creativity.
             </p>
           </div>

@@ -25,7 +25,7 @@ const AboutIntro: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="text-4xl md:text-5xl font-extrabold text-neutral-900 mb-8"
+            className="section-title"
           >
             About <span className="text-primary-600">Us</span>
           </motion.h2>

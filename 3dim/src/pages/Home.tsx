@@ -7,12 +7,14 @@ import Contact from "../components/contact.tsx";
 import Footer from "../components/footer.tsx";
 import Posts from "../components/posts.tsx";
 import Tools from "../components/tools.tsx";
+import Proof from "../components/proof.tsx";
 
 const HomePage: React.FC = () => {
   return (
     <div className="bg-neutral-50 text-neutral-900">
       <Navbar />
       <Hero />
+      <Proof />
       {/* Sections with IDs */}
       <div id="about">
         <AboutIntro />

@@ -9,7 +9,28 @@
       name="description"
       content="3Dim Engineering Solutions: research consultancy, mechanical and civil engineering, AI and machine learning, and full-stack software from Xi'an, China."
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
+    <link rel="canonical" href="https://3dimengsols.github.io/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="3Dim Engineering Solutions" />
+    <meta property="og:title" content="3Dim Engineering Solutions" />
+    <meta property="og:description" content="Research consultancy, engineering, AI and software from Xi'an, China." />
+    <meta property="og:url" content="https://3dimengsols.github.io/" />
+    <meta property="og:image" content="https://3dimengsols.github.io/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="3Dim Engineering Solutions" />
+    <meta name="twitter:image" content="https://3dimengsols.github.io/og-image.jpg" />
+    <script>
+      // Restores the real URL after the GitHub Pages 404.html redirect
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search.slice(1).split('&').map(function (s) { return s.replace(/~and~/g, '&'); }).join('?');
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      })(window.location);
+    </script>
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/

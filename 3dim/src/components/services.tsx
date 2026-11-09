@@ -1,187 +1,118 @@
 // Services.tsx
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import {
-  Cpu,
-  BookOpen,
-  Wrench,
-  Building2,
-  Brain,
-  Database,
-  FlaskConical,
-  Atom,
-  Terminal,
-  Sigma,
-  Globe,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { categories, services, ServiceCategory } from "../data/services.tsx";
 
-interface Service {
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-}
-
-const services: Service[] = [
-  {
-    title: "Research Assistance & Publications",
-    description:
-      "Thesis guidance, journal publications, literature reviews, and end-to-end academic support with 100+ successful projects globally.",
-    icon: <BookOpen className="w-12 h-12 text-primary-600" />,
-  },
-  {
-    title: "Mechanical Engineering",
-    description:
-      "Expertise in CAD/CAM, product prototyping, composites, FEA, topology optimization, and industrial product development.",
-    icon: <Wrench className="w-12 h-12 text-secondary-600" />,
-  },
-  {
-    title: "Civil Engineering",
-    description:
-      "Structural design, sustainable materials (glass powder concrete, fly ash composites), and advanced construction solutions.",
-    icon: <Building2 className="w-12 h-12 text-primary-600" />,
-  },
-  {
-  title: "Agentic AI Systems",
-  description:
-    "Design and deploy advanced AI agents, multi-agent workflows, and multi-tool integrations using frameworks like LangChain, LangGraph, MCP, CrueAI, and AutoGen. Expertise also includes building voice AI agents with Twilio, Retell AI, Vapi, and ElevenLabs for industries such as dental, real estate, barbershops, and customer support.",
-  icon: <Brain className="w-12 h-12 text-emerald-600" />,
-  },
-  {
-    title: "Artificial Intelligence & Machine Learning",
-    description:
-      "Custom ML/DL models for predictive analytics, NLP, speech recognition, and data-driven decision-making in research and industry.",
-    icon: <Brain className="w-12 h-12 text-secondary-600" />,
-  },
-  {
-    title: "Computer Vision & Image Processing",
-    description:
-      "Real-time vision systems for UAVs, robotics, and industry applications, with expertise in YOLO, object detection, and image analysis.",
-    icon: <Globe className="w-12 h-12 text-primary-600" />,
-  },
-  {
-    title: "Electrical, Robotics & Automation",
-    description:
-      "Smart robotics, UAVs, embedded systems, IoT devices, and intelligent automation using cutting-edge hardware integration.",
-    icon: <Cpu className="w-12 h-12 text-secondary-600" />,
-  },
-  {
-    title: "Data Science & Analytics",
-    description:
-      "Advanced econometrics, predictive analytics, time series, SEM, and financial forecasting using Python, R, and STATA.",
-    icon: <Database className="w-12 h-12 text-primary-600" />,
-  },
-  {
-    title: "Industrial & Product Solutions",
-    description:
-      "Engineering solutions in thermodynamics, manufacturing processes, optimization, and product prototyping.",
-    icon: <Wrench className="w-12 h-12 text-secondary-600" />,
-  },
-  {
-    title: "MATLAB & Simulink",
-    description:
-      "Modeling, simulation, signal processing, control systems, and optimization using MATLAB and Simulink.",
-    icon: <Sigma className="w-12 h-12 text-primary-600" />,
-  },
-  
-  
-  
-
-  {
-    title: "Composites & Advanced Materials",
-    description:
-      "Smart/nano composites, solid mechanics, additive manufacturing, and computational material modeling expertise.",
-    icon: <Atom className="w-12 h-12 text-primary-600" />,
-  },
-  {
-    title: "Chemistry & Materials Science",
-    description:
-      "Research and publication support in chemistry, polymer chemistry, environmental chemistry, and advanced sustainable materials.",
-    icon: <FlaskConical className="w-12 h-12 text-secondary-600" />,
-  },
-  
-  {
-    title: "Programming & Software Development",
-    description:
-      "Python, C++, Java, and custom software development solutions for research, automation, and engineering applications.",
-    icon: <Terminal className="w-12 h-12 text-secondary-600" />,
-  },
-  {
-    title: "Web Development & Full-Stack Solutions",
-    description:
-      "Custom web development including portfolio websites, company websites, e-commerce platforms, and personal blogs. Expertise in React.js, MongoDB, Express.js, Node.js, Flask, Django.",
-    icon: <Globe className="w-12 h-12 text-primary-600" />,
-  },
-];
-
+const clamp: React.CSSProperties = {
+  display: "-webkit-box",
+  WebkitLineClamp: 3,
+  WebkitBoxOrient: "vertical",
+  overflow: "hidden",
+};
 
 const Services: React.FC = () => {
+  const [active, setActive] = useState<ServiceCategory>("engineering");
+  const visible = services.filter((s) => s.category === active);
+
+  const onKey = (e: React.KeyboardEvent, i: number) => {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    const next = (i + (e.key === "ArrowRight" ? 1 : -1) + categories.length) % categories.length;
+    setActive(categories[next].id);
+    document.getElementById(`tab-${categories[next].id}`)?.focus();
+  };
+
   return (
     <section className="section-padding bg-gradient-professional relative overflow-hidden">
-      {/* Background decoration */}
-
       <div className="container-custom relative z-10">
-        <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mb-6"
-          >
-            <div className="eyebrow">
-              <span>Professional Services</span>
-            </div>
-          </motion.div>
-
+        <div className="section-header">
+          <span className="eyebrow">Professional Services</span>
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6"
+            transition={{ duration: 0.6 }}
+            className="section-title"
           >
             Our <span className="text-primary-600">Services</span>
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-xl text-neutral-600 max-w-3xl mx-auto"
-          >
-            Comprehensive engineering solutions tailored to meet your unique
-            challenges and drive innovation.
-          </motion.p>
+          <p className="section-lead">
+            Comprehensive engineering solutions tailored to meet your unique challenges and drive
+            innovation.
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05, duration: 0.6 }}
-                            className="card-premium p-8 group relative overflow-hidden"
-            >
-              {/* Background gradient on hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-50/50 to-secondary-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              
-              <div className="relative z-10">
-                <div className="flex justify-center mb-6 group-hover:scale-125 transition-transform duration-300">
-                  <div className="p-4 rounded-full bg-gradient-to-r from-primary-100 to-secondary-100 group-hover:shadow-lg transition-all duration-300 border-2 border-secondary-200 group-hover:border-secondary-400">
-                    {service.icon}
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-neutral-900 mb-4 group-hover:text-primary-600 transition-all duration-300">
-                  {service.title}
-                </h3>
-                <p className="text-neutral-600 leading-relaxed group-hover:text-neutral-700 transition-colors duration-300">
-                  {service.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+        {/* Category tabs */}
+        <div
+          role="tablist"
+          aria-label="Service categories"
+          className="flex flex-wrap justify-center gap-2 mb-8 md:mb-10"
+        >
+          {categories.map((c, i) => {
+            const on = c.id === active;
+            return (
+              <button
+                key={c.id}
+                id={`tab-${c.id}`}
+                role="tab"
+                aria-selected={on}
+                aria-controls="service-panel"
+                tabIndex={on ? 0 : -1}
+                onClick={() => setActive(c.id)}
+                onKeyDown={(e) => onKey(e, i)}
+                className={`shrink-0 h-11 px-5 rounded-full text-sm font-semibold border transition-colors duration-200 cursor-pointer ${
+                  on
+                    ? "bg-ink text-white border-ink"
+                    : "bg-white text-neutral-700 border-neutral-300 hover:border-primary-500 hover:text-primary-700"
+                }`}
+              >
+                {c.label}
+              </button>
+            );
+          })}
+        </div>
+
+        <div
+          id="service-panel"
+          role="tabpanel"
+          aria-labelledby={`tab-${active}`}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6"
+        >
+          {visible.map((service, i) => {
+            const Icon = service.icon;
+            return (
+              <motion.div
+                key={service.slug}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.05, duration: 0.4 }}
+                className="h-full"
+              >
+                <Link
+                  to={`/services/${service.slug}`}
+                  className="card-premium group flex flex-col h-full p-6 md:p-7"
+                >
+                  <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-primary-50 text-primary-600 mb-5 group-hover:bg-primary-100 transition-colors duration-200">
+                    <Icon className="w-6 h-6" aria-hidden="true" />
+                  </span>
+                  <h3 className="text-xl font-bold text-neutral-900 mb-3 leading-snug">
+                    {service.title}
+                  </h3>
+                  <p className="text-neutral-600 leading-relaxed" style={clamp}>
+                    {service.description}
+                  </p>
+                  <span className="mt-auto pt-5 inline-flex items-center gap-1.5 font-semibold text-primary-700 min-h-11">
+                    Learn more
+                    <ArrowRight
+                      className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+                      aria-hidden="true"
+                    />
+                  </span>
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

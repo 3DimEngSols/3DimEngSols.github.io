@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>3Dim Engineering Solutions</title>
+    <script>
+      // GitHub Pages single-page-app fallback: send deep links (/about, /services/...) to the app
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + '/?/' +
+        l.pathname.slice(1).replace(/&/g, '~and~') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') + l.hash
+      );
+    </script>
+  </head>
+  <body></body>
+</html>

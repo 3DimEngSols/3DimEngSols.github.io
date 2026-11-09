@@ -1,141 +1,54 @@
-// src/components/Tools.tsx
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  Cpu,
-  Wrench,
-  Layers,
-  Database,
-  Code,
-  Globe,
-  Settings,
-  BookOpen,
-  Atom,
-  Sigma,
-  GitBranch,
-  ClipboardList,
-  Box,
-  Package,
-  Braces,
-  Brain,
-  Terminal,
-  Phone,
-  Music,
-  Laptop,
-} from "lucide-react";
 
-interface Tool {
-  name: string;
-  category: string;
-  icon: React.ReactNode;
-}
-
-const tools: Tool[] = [
-  // CAD & CAE
-  { name: "SOLIDWORKS", category: "CAD & CAE", icon: <Wrench className="w-8 h-8 text-primary-600" /> },
-  { name: "AutoCAD", category: "CAD & CAE", icon: <Layers className="w-8 h-8 text-secondary-600" /> },
-  { name: "PTC Creo", category: "CAD & CAE", icon: <Box className="w-8 h-8 text-primary-600" /> },
-  { name: "ABAQUS", category: "CAD & CAE", icon: <Atom className="w-8 h-8 text-secondary-600" /> },  // ✅ Added correct spelling
-  { name: "Ansys Fluent", category: "CAD & CAE", icon: <Cpu className="w-8 h-8 text-primary-600" /> },
-  { name: "3D Modeling", category: "CAD & CAE", icon: <Package className="w-8 h-8 text-secondary-600" /> },
-  { name: "3D Printing", category: "CAD & CAE", icon: <Package className="w-8 h-8 text-primary-600" /> },
-
-  // Civil/Structural
-  { name: "Revit", category: "Civil/Structural", icon: <Layers className="w-8 h-8 text-primary-600" /> },
-  { name: "ETABS", category: "Civil/Structural", icon: <Layers className="w-8 h-8 text-secondary-600" /> },
-  { name: "CSI SAFE", category: "Civil/Structural", icon: <Layers className="w-8 h-8 text-primary-600" /> },
-  { name: "Autodesk Civil 3D", category: "Civil/Structural", icon: <Layers className="w-8 h-8 text-secondary-600" /> },
-  { name: "Building Information Modeling (BIM)", category: "Civil/Structural", icon: <Layers className="w-8 h-8 text-primary-600" /> },
-  // --- Agentic AI Tools ---
-{ name: "LangChain", icon: <Brain className="w-8 h-8 text-indigo-500" />, category: "Agentic AI Tools" },
-{ name: "LangGraph", icon: <Layers className="w-8 h-8 text-purple-500" />, category: "Agentic AI Tools" },
-{ name: "MCP", icon: <Database className="w-8 h-8 text-green-500" />, category: "Agentic AI Tools" },
-{ name: "CrueAI", icon: <Atom className="w-8 h-8 text-pink-500" />, category: "Agentic AI Tools" },
-{ name: "AutoGen", icon: <Cpu className="w-8 h-8 text-orange-500" />, category: "Agentic AI Tools" },
-
-// --- Voice AI & Automation ---
-{ name: "Twilio", icon: <Phone className="w-8 h-8 text-red-500" />, category: "Voice AI & Automation" },
-{ name: "Retell AI", icon: <Globe className="w-8 h-8 text-cyan-500" />, category: "Voice AI & Automation" },
-{ name: "Vapi", icon: <Terminal className="w-8 h-8 text-yellow-500" />, category: "Voice AI & Automation" },
-{ name: "ElevenLabs", icon: <Music className="w-8 h-8 text-orange-500" />, category: "Voice AI & Automation" },
-
-// --- No-Code Automation ---
-{ name: "n8n", icon: <Wrench className="w-8 h-8 text-teal-500" />, category: "No-Code Automation" },
-{ name: "Zapier", icon: <Globe className="w-8 h-8 text-orange-400" />, category: "No-Code Automation" },
-{ name: "Make.com", icon: <Laptop className="w-8 h-8 text-blue-500" />, category: "No-Code Automation" },
-
-
-  // Programming & AI
-  { name: "Python", category: "Programming & AI", icon: <Code className="w-8 h-8 text-primary-600" /> },
-  { name: "C++", category: "Programming & AI", icon: <Code className="w-8 h-8 text-secondary-600" /> },
-  { name: "MATLAB", category: "Programming & AI", icon: <Sigma className="w-8 h-8 text-primary-600" /> },
-  { name: "Simulink", category: "Programming & AI", icon: <Sigma className="w-8 h-8 text-secondary-600" /> },
-  { name: "OpenCV", category: "Programming & AI", icon: <Cpu className="w-8 h-8 text-primary-600" /> },
-  { name: "PyTorch", category: "Programming & AI", icon: <Brain className="w-8 h-8 text-secondary-600" /> },
-  { name: "TensorFlow", category: "Programming & AI", icon: <Brain className="w-8 h-8 text-primary-600" /> },
-  { name: "Keras", category: "Programming & AI", icon: <Brain className="w-8 h-8 text-secondary-600" /> },
-  { name: "scikit-learn", category: "Programming & AI", icon: <Braces className="w-8 h-8 text-primary-600" /> },
-  { name: "Hugging Face Transformers", category: "Programming & AI", icon: <Braces className="w-8 h-8 text-secondary-600" /> },
-  { name: "Ultralytics", category: "Programming & AI", icon: <Braces className="w-8 h-8 text-primary-600" /> },
-  { name: "Console", category: "Programming & AI", icon: <Terminal className="w-8 h-8 text-secondary-600" /> }, // ✅ Added Console
-
-  // Web/DevOps
-  { name: "MERN Stack", category: "Web/DevOps", icon: <Globe className="w-8 h-8 text-secondary-600" /> },
-  { name: "React.js", category: "Web/DevOps", icon: <Globe className="w-8 h-8 text-primary-600" /> },
-  { name: "Express.js", category: "Web/DevOps", icon: <Globe className="w-8 h-8 text-secondary-600" /> },
-  { name: "MongoDB", category: "Web/DevOps", icon: <Database className="w-8 h-8 text-primary-600" /> },
-  { name: "Node.js", category: "Web/DevOps", icon: <Globe className="w-8 h-8 text-secondary-600" /> },
-  { name: "DevOps", category: "Web/DevOps", icon: <Settings className="w-8 h-8 text-primary-600" /> },
-  { name: "CI/CD", category: "Web/DevOps", icon: <GitBranch className="w-8 h-8 text-secondary-600" /> },
-  { name: "GitHub", category: "Web/DevOps", icon: <GitBranch className="w-8 h-8 text-primary-600" /> },
-
-  // Productivity & Utilities
-  { name: "Microsoft Excel", category: "Productivity", icon: <ClipboardList className="w-8 h-8 text-primary-600" /> },
-  { name: "Microsoft Office", category: "Productivity", icon: <ClipboardList className="w-8 h-8 text-secondary-600" /> },
-  { name: "Google Colab", category: "Productivity", icon: <BookOpen className="w-8 h-8 text-primary-600" /> },
-  { name: "Jupyter Notebook", category: "Productivity", icon: <BookOpen className="w-8 h-8 text-secondary-600" /> },
-  { name: "Spyder", category: "Productivity", icon: <BookOpen className="w-8 h-8 text-primary-600" /> },
-  { name: "VS Code", category: "Productivity", icon: <BookOpen className="w-8 h-8 text-secondary-600" /> },
-  { name: "Inkscape", category: "Productivity", icon: <BookOpen className="w-8 h-8 text-primary-600" /> },
-  { name: "Saber", category: "Productivity", icon: <BookOpen className="w-8 h-8 text-secondary-600" /> }
+const groups: { title: string; items: string[] }[] = [
+  { title: "CAD & CAE", items: ["SOLIDWORKS", "AutoCAD", "PTC Creo", "ABAQUS", "Ansys Fluent", "3D Modeling", "3D Printing"] },
+  { title: "Civil/Structural", items: ["Revit", "ETABS", "CSI SAFE", "Autodesk Civil 3D", "Building Information Modeling (BIM)"] },
+  { title: "Agentic AI Tools", items: ["LangChain", "LangGraph", "MCP", "CrueAI", "AutoGen"] },
+  { title: "Voice AI & Automation", items: ["Twilio", "Retell AI", "Vapi", "ElevenLabs"] },
+  { title: "No-Code Automation", items: ["n8n", "Zapier", "Make.com"] },
+  { title: "Programming & AI", items: ["Python", "C++", "MATLAB", "Simulink", "OpenCV", "PyTorch", "TensorFlow", "Keras", "scikit-learn", "Hugging Face Transformers", "Ultralytics", "Console"] },
+  { title: "Web/DevOps", items: ["MERN Stack", "React.js", "Express.js", "MongoDB", "Node.js", "DevOps", "CI/CD", "GitHub"] },
+  { title: "Productivity", items: ["Microsoft Excel", "Microsoft Office", "Google Colab", "Jupyter Notebook", "Spyder", "VS Code", "Inkscape", "Saber"] },
 ];
-
 
 const Tools: React.FC = () => {
   return (
     <section className="section-padding bg-neutral-50 relative overflow-hidden">
       <div className="container-custom relative z-10">
-        <div className="text-center mb-16">
+        <div className="section-header">
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6"
+            transition={{ duration: 0.6 }}
+            className="section-title"
           >
             Our <span className="text-primary-600">Tools & Technologies</span>
           </motion.h2>
-          <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
-            A wide range of engineering, AI, and software tools we use to deliver innovative solutions.
+          <p className="section-lead">
+            A wide range of engineering, AI, and software tools we use to deliver innovative
+            solutions.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {tools.map((tool, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.02, duration: 0.6 }}
-                            className="card-premium p-6 flex flex-col items-center text-center group"
-            >
-              <div className="mb-4">{tool.icon}</div>
-              <h3 className="text-lg font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors duration-300">
-                {tool.name}
+        <div className="grid md:grid-cols-2 gap-x-12 gap-y-8 max-w-5xl mx-auto">
+          {groups.map((g) => (
+            <div key={g.title}>
+              <h3 className="text-sm font-semibold uppercase tracking-widest text-neutral-500 mb-3">
+                {g.title}
               </h3>
-              <p className="text-sm text-neutral-500 mt-1">{tool.category}</p>
-            </motion.div>
+              <ul className="flex flex-wrap gap-2 list-none p-0">
+                {g.items.map((item) => (
+                  <li
+                    key={item}
+                    className="px-3.5 py-1.5 rounded-full bg-white border border-neutral-200 text-sm font-medium text-neutral-800 shadow-sm"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
         </div>
       </div>
