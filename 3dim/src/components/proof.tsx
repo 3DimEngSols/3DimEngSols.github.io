@@ -45,7 +45,7 @@ const Counter: React.FC<{ value: number; suffix: string }> = ({ value, suffix })
 
 const Proof: React.FC = () => (
   <section className="bg-white border-b border-neutral-200" aria-label="Our track record">
-    <div className="container-custom py-6 md:py-8">
+    <div className="container-custom py-5 md:py-6">
       <ul className="grid grid-cols-2 md:grid-cols-4 gap-y-4 md:gap-0 md:divide-x md:divide-neutral-200 list-none p-0">
         {stats.map((s) => (
           <li key={s.label} className="text-center px-4">
@@ -57,7 +57,7 @@ const Proof: React.FC = () => (
         ))}
       </ul>
 
-      <div className="mt-6">
+      <div className="mt-4">
         <div className="flex items-center gap-4 mb-4" role="presentation">
           <span className="h-px flex-1 bg-gradient-to-r from-transparent to-neutral-300" />
           <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-500">

@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
   };
 
   const linkBase =
-    "relative px-1 py-2 text-[15px] font-medium text-neutral-700 hover:text-primary-700 transition-colors duration-200 cursor-pointer";
+    "relative px-1 py-1.5 text-sm font-medium text-neutral-700 hover:text-primary-700 transition-colors duration-200 cursor-pointer";
   const active = (path: string) =>
     location.pathname === path ? "text-primary-700" : "";
 
@@ -51,17 +51,17 @@ const Navbar: React.FC = () => {
       }`}
     >
       <div className="container-custom">
-        <div className="flex justify-between items-center h-16 md:h-[72px]">
+        <div className="flex justify-between items-center h-14 md:h-[60px]">
           <Link to="/" className="flex items-center" aria-label="3Dim Engineering Solutions home">
             <img
               src="/Images/logo2.png"
               alt="3Dim Engineering Solutions"
-              className="h-10 md:h-11 w-auto"
+              className="h-8 md:h-9 w-auto"
             />
           </Link>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-7">
             <Link to="/" className={`group/link ${linkBase} ${active("/")}`}>
               Home
               <Underline on={location.pathname === "/"} />
@@ -84,7 +84,7 @@ const Navbar: React.FC = () => {
             </Link>
             <button
               onClick={() => handleSection("contact")}
-              className="inline-flex items-center gap-2 h-11 px-5 rounded-full bg-neutral-900 text-white text-sm font-semibold hover:bg-primary-700 transition-colors duration-200 cursor-pointer"
+              className="inline-flex items-center gap-2 h-9 px-4 rounded-full bg-neutral-900 text-white text-sm font-semibold hover:bg-primary-700 transition-colors duration-200 cursor-pointer"
             >
               Contact
               <ArrowRight className="w-4 h-4" aria-hidden="true" />

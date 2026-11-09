@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
-const NAV_OFFSET = 72;
+const NAV_OFFSET = 60;
 
 /** Smooth-scrolls to a home-page section (navigating home first from other pages). */
 export const scrollToSection = (id: string) => {

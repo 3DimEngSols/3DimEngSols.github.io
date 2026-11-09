@@ -17,7 +17,7 @@
   html {
     overflow-anchor: none; /* GSAP pin spacers must not trigger browser scroll anchoring */
     scroll-behavior: auto;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 4.25rem;
   }
 
   h1, h2, h3 {

@@ -14,7 +14,7 @@ interface Props {
   minHeight?: string;
 }
 
-const NAV_OFFSET = 72;
+const NAV_OFFSET = 60;
 const GAP = 20;
 
 /**

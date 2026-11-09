@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, MessageCircle } from "lucide-react";
 
 const Hero: React.FC = () => (
-  <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-green-50 pt-24 pb-10 md:pt-28 md:pb-14 text-center">
+  <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-green-50 pt-[4.5rem] pb-7 md:pt-20 md:pb-9 text-center">
     <div className="container-custom relative z-10">
       <motion.img
         src="/Images/logo2.png"
@@ -13,13 +13,13 @@ const Hero: React.FC = () => (
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="mx-auto h-16 md:h-20 w-auto mb-5"
+        className="mx-auto h-14 md:h-[4.5rem] w-auto mb-3"
       />
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.08, duration: 0.55 }}
-        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-ink leading-tight mb-4"
+        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-ink leading-tight mb-3"
       >
         WE MAKE YOUR <span className="text-primary-600">IMAGINATION</span> A REALITY
       </motion.h1>
@@ -27,7 +27,7 @@ const Hero: React.FC = () => (
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.16, duration: 0.55 }}
-        className="max-w-2xl mx-auto text-base md:text-lg text-neutral-700 leading-relaxed mb-7"
+        className="max-w-2xl mx-auto text-base md:text-lg text-neutral-700 leading-relaxed mb-5"
       >
         From research consultancy to full-scale engineering solutions, we bring innovation,
         precision, and creativity into every project.

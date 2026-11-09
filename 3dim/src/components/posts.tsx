@@ -129,7 +129,7 @@ const Posts: React.FC = () => (
   <HorizontalScroller
     label="Recent posts"
     perView={1.5}
-    minHeight="md:min-h-[clamp(360px,calc(100svh-230px),560px)]"
+    minHeight="md:min-h-[clamp(360px,calc(100svh-218px),560px)]"
     header={
       <SectionHeader
         compact
