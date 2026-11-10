@@ -2,7 +2,7 @@ import React from "react";
 import { ArrowUpRight } from "lucide-react";
 import HorizontalScroller from "./HorizontalScroller.tsx";
 import SectionHeader from "./SectionHeader.tsx";
-import { BookMarked, Rocket, Network, Bot, Microscope,Globe, Users, MessageCircle } from "lucide-react";
+import { BookMarked, Rocket, Network, Bot, Microscope, Globe, Users, MessageCircle, FlaskConical, TrendingUp } from "lucide-react";
 
 interface Project {
   title: string;
@@ -13,6 +13,30 @@ interface Project {
 
 
 const projects: Project[] = [
+  {
+    title:
+      "Chitosan-Based Active Composites for Sustainable Food Packaging – Published in Journal of Reinforced Plastics and Composites",
+    description:
+      "A review of how biopolymer blending, chemical cross-linking and bioactive fillers improve the strength, barrier and antimicrobial performance of chitosan packaging, and what still stands in the way of industrial adoption.",
+    icon: <FlaskConical className="w-6 h-6 text-primary-600" />,
+    link: "https://www.linkedin.com/posts/3dim-engineering-solutions_advancing-sustainablepackaging-chitosan-activity-7521381093661671425-C3RZ",
+  },
+  {
+    title:
+      "Pull-Force Modelling for Trenchless Pipe Bursting – Published in Canadian Geotechnical Journal",
+    description:
+      "A material-specific numerical model of pipe–soil interaction that predicts pulling forces for concrete and HDPE pipe replacement, validated on two DN300 field projects with up to 45% lower prediction error.",
+    icon: <Network className="w-6 h-6 text-primary-600" />,
+    link: "https://www.linkedin.com/posts/3dim-engineering-solutions_advancing-civilengineering-geotechnicalengineering-activity-7522535301420990464-5Ip-",
+  },
+  {
+    title:
+      "Transport Infrastructure and Economic Development in China and Oman – Published in Industrial Engineering and Management Systems",
+    description:
+      "Quantile regression and wavelet analysis showing how the economic payoff of transport infrastructure investment differs across development stages and between the two economies.",
+    icon: <TrendingUp className="w-6 h-6 text-primary-600" />,
+    link: "https://www.linkedin.com/posts/3dim-engineering-solutions_advancing-activity-7415239424172822529-CpZ9",
+  },
   {
     title:
       "Explainable ML for Glass Powder Concrete – Published in Materials Today Communications",

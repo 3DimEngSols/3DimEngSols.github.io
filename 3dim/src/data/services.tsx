@@ -23,7 +23,7 @@ export const services: Service[] = [
     slug: "research-assistance-and-publications",
     title: "Research Assistance & Publications",
     description:
-      "Thesis guidance, journal publications, literature reviews, and end-to-end academic support with 100+ successful projects globally.",
+      "Thesis guidance, journal publications, literature reviews, and end-to-end academic support with 500+ successful projects globally.",
     category: "research",
     icon: BookOpen,
   },

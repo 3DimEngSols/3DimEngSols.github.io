@@ -9,7 +9,9 @@ import { categories, services, ServiceCategory } from "../data/services.tsx";
 
 const Services: React.FC = () => {
   const [active, setActive] = useState<ServiceCategory>("engineering");
-  useEffect(() => refreshScroll(), [active]);
+  useEffect(() => {
+    refreshScroll();
+  }, [active]);
   const visible = services.filter((s) => s.category === active);
 
   const onKey = (e: React.KeyboardEvent, i: number) => {

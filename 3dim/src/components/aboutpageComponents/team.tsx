@@ -183,7 +183,7 @@ const Team: React.FC = () => {
         <SectionHeader
           eyebrow="Meet Our Team"
           title={<>Meet Our <span className="text-primary-600">Core Team</span></>}
-          lead="A multidisciplinary team driving innovation across AI, mechanical design, civil engineering, power systems, and full-stack development. Together, we've delivered 100+ successful projects worldwide."
+          lead="A multidisciplinary team driving innovation across AI, mechanical design, civil engineering, power systems, and full-stack development. Together, we've delivered 500+ successful projects worldwide."
         />
 
         {/* Founders: navy feature cards */}

@@ -3,10 +3,10 @@ import { animate, useInView, useReducedMotion } from "framer-motion";
 import { BookOpen } from "lucide-react";
 
 const stats = [
-  { value: 100, suffix: "+", label: "Projects Completed" },
-  { value: 50, suffix: "+", label: "Happy Clients" },
+  { value: 500, suffix: "+", label: "Projects Completed" },
+  { value: 350, suffix: "+", label: "Happy Clients" },
   { value: 24, suffix: "/7", label: "Support" },
-  { value: 4, suffix: "+", label: "Years Experience" },
+  { value: 6, suffix: "+", label: "Years Experience" },
 ];
 
 // Journals named in our published work on this site
